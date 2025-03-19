@@ -13,7 +13,7 @@ public class AppInitializer extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppInitializer.class.getResource("/view/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1120, 721);
-        stage.setTitle("Hello!");
+        stage.setTitle("Mantel therapy Health System!");
 
         Image image = new Image(getClass().getResourceAsStream("/images/logodesign.png"));
         stage.getIcons().add(image);

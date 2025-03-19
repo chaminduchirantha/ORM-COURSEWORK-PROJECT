@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -26,6 +27,35 @@ public class LoginController {
 
     @FXML
     private Pane userNamePasswordAnchorePane;
+
+    @FXML
+    private TextField txtPassword01;
+
+    public boolean isPasswordVisible = false;
+
+
+    @FXML
+    void eyeHiddenPassword(MouseEvent event) {
+        if (isPasswordVisible) {
+            txtPassword.setText(txtPassword01.getText());
+
+            txtPassword01.setVisible(false);
+            txtPassword01.setManaged(false);
+            txtPassword.setVisible(true);
+            txtPassword.setManaged(true);
+        } else {
+            txtPassword01.setText(txtPassword.getText());
+
+            txtPassword01.setVisible(true);
+            txtPassword01.setManaged(true);
+            txtPassword.setVisible(false);
+            txtPassword.setManaged(false);// layout ekenma ain krnwa
+        }
+
+        isPasswordVisible = !isPasswordVisible;
+
+    }
+
 
     @FXML
     void loginOnAction(ActionEvent event) {

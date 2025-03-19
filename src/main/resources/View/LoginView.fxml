@@ -26,8 +26,17 @@
             <Font name="Trebuchet MS" size="24.0" />
          </font>
       </Label>
-      <Pane fx:id="userNamePasswordAnchorePane" layoutX="338.0" layoutY="135.0" opacity="0.96" prefHeight="451.0" prefWidth="470.0" style="-fx-background-color: #ecf0f1; -fx-background-radius: 35; -fx-border-color: #2c3e50; -fx-border-radius: 35;">
+      <Pane fx:id="userNamePasswordAnchorePane" layoutX="337.0" layoutY="135.0" opacity="0.96" prefHeight="451.0" prefWidth="470.0" style="-fx-background-color: #ecf0f1; -fx-background-radius: 35; -fx-border-color: #2c3e50; -fx-border-radius: 35;">
          <children>
+            <PasswordField fx:id="txtPassword" layoutX="80.0" layoutY="190.0" prefHeight="39.0" prefWidth="328.0" promptText="PASSWORD" style="-fx-border-color: #2c3e50; -fx-background-radius: 10; -fx-border-radius: 10;">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font></PasswordField>
+            <TextField fx:id="txtPassword01" layoutX="80.0" layoutY="190.0" prefHeight="39.0" prefWidth="328.0" promptText="PASSWORD" style="-fx-border-radius: 10; -fx-border-color: #2c3e50; -fx-background-radius: 10;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
             <Line endX="362.4000244140625" layoutX="108.0" layoutY="56.0" startX="-108.0" />
             <TextField fx:id="txtName" layoutX="80.0" layoutY="137.0" prefHeight="39.0" prefWidth="328.0" promptText="USER NAME" style="-fx-border-color: #2c3e50; -fx-background-radius: 10; -fx-border-radius: 10;">
                <font>
@@ -48,10 +57,6 @@
                   <Image url="@../images/icons8-user.gif" />
                </image>
             </ImageView>
-            <PasswordField fx:id="txtPassword" layoutX="80.0" layoutY="190.0" prefHeight="39.0" prefWidth="328.0" promptText="PASSWORD" style="-fx-border-color: #2c3e50; -fx-background-radius: 10; -fx-border-radius: 10;">
-               <font>
-                  <Font name="Calibri" size="16.0" />
-               </font></PasswordField>
             <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="42.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
                <image>
                                  </image>
@@ -66,7 +71,7 @@
                   <Image url="@../images/WhatsApp%20Image%202024-07-15%20at%2015.27.07_2a328ce7.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="372.0" layoutY="197.0" onMouseClicked="#eyeHiddenPassword" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="369.0" layoutY="198.0" onMouseClicked="#eyeHiddenPassword" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@../../../../../../../other/orm/orm/src/main/resources/images/icons8-eye-24.png" />
                </image>
