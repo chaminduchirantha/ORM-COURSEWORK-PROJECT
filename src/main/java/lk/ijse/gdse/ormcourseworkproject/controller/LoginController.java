@@ -3,6 +3,8 @@ package lk.ijse.gdse.ormcourseworkproject.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -10,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -31,28 +36,33 @@ public class LoginController {
     @FXML
     private TextField txtPassword01;
 
+
+    @FXML
+    private Button registerBtn;
+
+
     public boolean isPasswordVisible = false;
 
 
     @FXML
     void eyeHiddenPassword(MouseEvent event) {
-        if (isPasswordVisible) {
-            txtPassword.setText(txtPassword01.getText());
-
-            txtPassword01.setVisible(false);
-            txtPassword01.setManaged(false);
-            txtPassword.setVisible(true);
-            txtPassword.setManaged(true);
-        } else {
-            txtPassword01.setText(txtPassword.getText());
-
-            txtPassword01.setVisible(true);
-            txtPassword01.setManaged(true);
-            txtPassword.setVisible(false);
-            txtPassword.setManaged(false);// layout ekenma ain krnwa
-        }
-
-        isPasswordVisible = !isPasswordVisible;
+//        if (isPasswordVisible) {
+//            txtPassword.setText(txtPassword01.getText());
+//
+//            txtPassword01.setVisible(false);
+//            txtPassword01.setManaged(false);
+//            txtPassword.setVisible(true);
+//            txtPassword.setManaged(true);
+//        } else {
+//            txtPassword01.setText(txtPassword.getText());
+//
+//            txtPassword01.setVisible(true);
+//            txtPassword01.setManaged(true);
+//            txtPassword.setVisible(false);
+//            txtPassword.setManaged(false);// layout ekenma ain krnwa
+//        }
+//
+//        isPasswordVisible = !isPasswordVisible;
 
     }
 
@@ -100,6 +110,27 @@ public class LoginController {
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, "LoginPage Not Found").show();
         }
+    }
+
+    @FXML
+    void registerOnAction(ActionEvent event) throws IOException {
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ragistration.fxml"));
+//        Parent load = loader.load();
+//
+//        RegistrationController registrationController = loader.getController();
+////
+////        String email = selectedItem.getEmail();
+////        sendMailController.setCustomerEmail(email);
+//
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(load));
+//        stage.setTitle("Registration");
+
+        LoginAnchorPane.getChildren().clear();
+        AnchorPane load = FXMLLoader.load(getClass().getResource("/view/ragistration.fxml"));
+        LoginAnchorPane.getChildren().add(load);
+
     }
 
 }

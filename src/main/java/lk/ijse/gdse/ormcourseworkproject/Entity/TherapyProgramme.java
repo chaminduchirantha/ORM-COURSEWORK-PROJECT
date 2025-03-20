@@ -4,6 +4,8 @@ package lk.ijse.gdse.ormcourseworkproject.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Data
@@ -23,4 +25,5 @@ public class TherapyProgramme{
     @ManyToOne
     @JoinColumn(name = "therapistId")
     private Therapist therapist;
+
 }

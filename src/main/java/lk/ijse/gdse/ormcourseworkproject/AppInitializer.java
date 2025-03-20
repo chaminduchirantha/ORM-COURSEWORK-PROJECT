@@ -12,7 +12,7 @@ public class AppInitializer extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppInitializer.class.getResource("/view/LoginView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1120, 721);
+        Scene scene = new Scene(fxmlLoader.load(), 1130, 741);
         stage.setTitle("Mantel therapy Health System!");
 
         Image image = new Image(getClass().getResourceAsStream("/images/logodesign.png"));

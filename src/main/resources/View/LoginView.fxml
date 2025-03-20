@@ -21,7 +21,7 @@
             <Image url="@../images/9762187.jpg" />
          </image>
       </ImageView>
-      <Label prefHeight="68.0" prefWidth="1120.0" style="-fx-background-color: #1dd1a1;" text="                                                                 Welcome To Login">
+      <Label prefHeight="68.0" prefWidth="1130.0" style="-fx-background-color: #1dd1a1;" text="                                                                 Welcome To Login">
          <font>
             <Font name="Trebuchet MS" size="24.0" />
          </font>
@@ -32,11 +32,6 @@
                <font>
                   <Font name="Calibri" size="16.0" />
                </font></PasswordField>
-            <TextField fx:id="txtPassword01" layoutX="80.0" layoutY="190.0" prefHeight="39.0" prefWidth="328.0" promptText="PASSWORD" style="-fx-border-radius: 10; -fx-border-color: #2c3e50; -fx-background-radius: 10;">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
             <Line endX="362.4000244140625" layoutX="108.0" layoutY="56.0" startX="-108.0" />
             <TextField fx:id="txtName" layoutX="80.0" layoutY="137.0" prefHeight="39.0" prefWidth="328.0" promptText="USER NAME" style="-fx-border-color: #2c3e50; -fx-background-radius: 10; -fx-border-radius: 10;">
                <font>
@@ -76,6 +71,14 @@
                   <Image url="@../../../../../../../other/orm/orm/src/main/resources/images/icons8-eye-24.png" />
                </image>
             </ImageView>
+            <Button fx:id="registerBtn" layoutX="165.0" layoutY="391.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="38.0" prefWidth="157.0" style="-fx-background-radius: 10; -fx-background-color: #55efc4; -fx-border-color: #2d3436; -fx-border-radius: 10;" text="Register">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
          <effect>
             <InnerShadow />

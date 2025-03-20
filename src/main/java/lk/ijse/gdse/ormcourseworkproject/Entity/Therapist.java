@@ -26,4 +26,5 @@ public class Therapist {
     @OneToMany
     @JoinColumn(name = "therapyProgrammeId")
     private List<TherapyProgramme> therapyProgrammes;
+
 }
