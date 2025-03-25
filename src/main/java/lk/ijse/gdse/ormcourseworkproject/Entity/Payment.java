@@ -3,6 +3,7 @@ package lk.ijse.gdse.ormcourseworkproject.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -14,7 +15,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "payment")
-public class Payment {
+public class Payment implements SuperEntity {
     @Id
     private String paymentId;
     private Date paymentDate;

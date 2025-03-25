@@ -16,7 +16,7 @@ import lombok.extern.apachecommons.CommonsLog;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements SuperEntity{
     @Id
     @Column(name = "userId")
     private String usernameId;

@@ -14,16 +14,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "therapyProgramme")
-public class TherapyProgramme{
+public class TherapyProgramme implements SuperEntity{
     @Id
     @Column(name = "therapyProgrammeId")
     private String therapyProgrammeId;
     private String therapyProgrammeName;
     private String therapyDuration;
     private double therapyPrice;
-
-    @ManyToOne
-    @JoinColumn(name = "therapistId")
-    private Therapist therapist;
 
 }

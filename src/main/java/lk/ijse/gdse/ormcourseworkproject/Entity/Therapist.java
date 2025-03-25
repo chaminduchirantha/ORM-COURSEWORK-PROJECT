@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table( name = "therapist")
-public class Therapist {
+public class Therapist implements SuperEntity {
     @Id
     @Column(name = "therapistId")
     private String therapistId;
@@ -22,9 +22,5 @@ public class Therapist {
     private String therapistAddress;
     private int age;
     private String therapistPhone;
-
-    @OneToMany
-    @JoinColumn(name = "therapyProgrammeId")
-    private List<TherapyProgramme> therapyProgrammes;
 
 }
