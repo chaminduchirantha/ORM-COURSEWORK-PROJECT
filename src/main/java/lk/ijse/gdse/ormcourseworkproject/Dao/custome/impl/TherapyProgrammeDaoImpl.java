@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.TherapyProgrammeDao;
 import lk.ijse.gdse.ormcourseworkproject.Entity.TherapyProgramme;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
@@ -15,7 +16,7 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
 
     Session session = FactoryConfiguration.getInstance().getSession();
     Transaction transaction =session.beginTransaction();
-    TherapyProgramme therapyProgramme = new TherapyProgramme();
+    TherapyProgramme therapyProgramme = (TherapyProgramme) DaoFactory.getInstance().getDao(DaoFactory.daoType.THERAPYPROGRAMME);
 
 
     public String getNextId() throws SQLException, IOException {

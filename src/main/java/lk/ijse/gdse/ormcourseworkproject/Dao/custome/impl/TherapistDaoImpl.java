@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.TherapistDao;
 import lk.ijse.gdse.ormcourseworkproject.Entity.Therapist;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
@@ -15,7 +16,7 @@ public class TherapistDaoImpl implements TherapistDao {
 
     Session session = FactoryConfiguration.getInstance().getSession();
     Transaction transaction = session.beginTransaction();
-    Therapist therapist = new Therapist();
+    Therapist therapist = (Therapist) DaoFactory.getInstance().getDao(DaoFactory.daoType.THERAPIST);
 
 
     @Override

@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.UserDao;
 import lk.ijse.gdse.ormcourseworkproject.Entity.User;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
@@ -15,6 +16,8 @@ public class UserDaoImpl implements UserDao {
 
     Session session = FactoryConfiguration.getInstance().getSession();
     Transaction transaction = session.beginTransaction();
+    User user = (User) DaoFactory.getInstance().getDao(DaoFactory.daoType.USER);
+
 
     @Override
     public String getNextId() throws SQLException, IOException {
@@ -64,7 +67,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void delete(String pk) {
-        User user = new User();
         user.setUsernameId(pk);
         session.remove(user);
         transaction.commit();
