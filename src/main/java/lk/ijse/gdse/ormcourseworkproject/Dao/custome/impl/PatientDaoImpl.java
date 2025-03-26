@@ -3,7 +3,6 @@ package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.PatientDao;
 import lk.ijse.gdse.ormcourseworkproject.Entity.Patient;
-import lk.ijse.gdse.ormcourseworkproject.Entity.Therapist;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,14 +15,14 @@ import java.util.List;
 public class PatientDaoImpl implements PatientDao {
 
 
-    Session session = FactoryConfiguration.getInstance().getSession();
-    Transaction transaction=session.beginTransaction();
 
-    Patient patient = (Patient) DaoFactory.getInstance().getDao(DaoFactory.daoType.PATIENT);
 
 
     @Override
     public String getNextId() throws SQLException, IOException {
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         String hql = "SELECT l.patientID FROM Patient l ORDER BY l.patientID DESC";
         Query<String> query = session.createQuery(hql);
 
@@ -37,14 +36,16 @@ public class PatientDaoImpl implements PatientDao {
             String substring = lastId.substring(1);
             int i = Integer.parseInt(substring);
             int newIdIndex = i + 1;
-            return String.format("T%03d", newIdIndex);
+            return String.format("P%03d", newIdIndex);
         }
 
-        return "T001";
+        return "P001";
     }
 
     @Override
     public List<Patient> getAll(){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         Query<Patient>patientQuery=session.createQuery("SELECT p from Patient p" ,Patient.class );
         List<Patient> patientList=patientQuery.list();
         transaction.commit();
@@ -53,25 +54,38 @@ public class PatientDaoImpl implements PatientDao {
     }
 
     @Override
-    public void save(Patient patient){
+    public boolean save(Patient patient){
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         session.persist(patient);
         transaction.commit();
         session.close();
+        return true;
     }
 
     @Override
-    public void update (Patient patient){
+    public boolean update (Patient patient){
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         session.merge(patient);
         transaction.commit();
         session.close();
+        return true;
     }
 
     @Override
-    public void delete(String pk){
+    public boolean delete(String pk){
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+        Patient patient = new Patient();
         patient.setPatientID(pk);
         session.remove(patient);
         transaction.commit();
         session.close();
+        return true;
     }
 
     @Override

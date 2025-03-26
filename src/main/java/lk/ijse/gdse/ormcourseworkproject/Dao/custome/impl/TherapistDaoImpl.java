@@ -63,24 +63,27 @@ public class TherapistDaoImpl implements TherapistDao {
     }
 
     @Override
-    public void save(Therapist therapist) {
+    public boolean save(Therapist therapist) {
         session.persist(therapist);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void update(Therapist therapist) {
+    public boolean update(Therapist therapist) {
         session.merge(therapist);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void delete(String pk) {
+    public boolean delete(String pk) {
         therapist.setTherapistId(pk);
         session.remove(therapist);
         transaction.commit();
         session.close();
+        return false;
     }
 }

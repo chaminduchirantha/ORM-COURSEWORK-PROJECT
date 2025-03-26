@@ -50,24 +50,27 @@ public class TherapySessionDaoImpl implements TherapySessionDao {
 
     }
     @Override
-    public void save(TherapySession therapySession) {
+    public boolean save(TherapySession therapySession) {
         session.persist(therapySession);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void update(TherapySession therapySession) {
+    public boolean update(TherapySession therapySession) {
         session.merge(therapySession);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void delete(String pk){
+    public boolean delete(String pk){
         therapySession.setSessionID(pk);
         session.persist(therapySession);
         transaction.commit();
         session.close();
+        return false;
     }
 }

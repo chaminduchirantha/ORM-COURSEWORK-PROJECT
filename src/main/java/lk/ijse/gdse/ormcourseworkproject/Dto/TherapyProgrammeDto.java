@@ -16,6 +16,5 @@ public class TherapyProgrammeDto {
     private String therapyProgrammeName;
     private String therapyDuration;
     private double therapyPrice;
-    private String therapistId;
 
 }

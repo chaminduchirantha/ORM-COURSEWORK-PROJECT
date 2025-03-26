@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String getNextId() throws SQLException, IOException {
-        String hql = "SELECT l.Id FROM User l ORDER BY l.Id DESC";
+        String hql = "SELECT l.usernameId FROM User l ORDER BY l.usernameId DESC";
         Query<String> query = session.createQuery(hql);
 
         query.setMaxResults(1);
@@ -52,25 +52,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void save(User user) {
+    public boolean save(User user) {
         session.persist(user);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void update(User user) {
+    public boolean update(User user) {
         session.merge(user);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void delete(String pk) {
+    public boolean delete(String pk) {
         user.setUsernameId(pk);
         session.remove(user);
         transaction.commit();
         session.close();
+        return false;
     }
 }
 

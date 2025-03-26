@@ -49,24 +49,27 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
     }
 
     @Override
-    public void save(TherapyProgramme therapyProgramme){
+    public boolean save(TherapyProgramme therapyProgramme){
         session.persist(therapyProgramme);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void update(TherapyProgramme therapyProgramme){
+    public boolean update(TherapyProgramme therapyProgramme){
         session.merge(therapyProgramme);
         transaction.commit();
         session.close();
+        return false;
     }
 
     @Override
-    public void delete(String pk){
+    public boolean delete(String pk){
         therapyProgramme.setTherapyProgrammeId(pk);
         session.remove( therapyProgramme);
         transaction.commit();
         session.close();
+        return false;
     }
 }

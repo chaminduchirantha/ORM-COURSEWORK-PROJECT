@@ -62,7 +62,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="387.0" layoutY="22.0" text="Therapist">
+      <Label layoutX="387.0" layoutY="25.0" text="Therapist">
          <font>
             <Font name="Calibri Bold" size="32.0" />
          </font></Label>

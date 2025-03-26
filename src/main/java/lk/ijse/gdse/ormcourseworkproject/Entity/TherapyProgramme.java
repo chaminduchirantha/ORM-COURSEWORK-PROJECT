@@ -21,5 +21,4 @@ public class TherapyProgramme implements SuperEntity{
     private String therapyProgrammeName;
     private String therapyDuration;
     private double therapyPrice;
-
 }

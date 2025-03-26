@@ -20,8 +20,8 @@ public class DaoFactory {
         USER,THERAPIST,THERAPYSESSION,PATIENT,THERAPYPROGRAMME,
     }
 
-    public SuperDao getDao(daoType daoType) {
-        switch (daoType){
+    public SuperDao getDao(daoType type) {
+        switch (type){
             case USER:
                 return new UserDaoImpl();
                 case THERAPIST:

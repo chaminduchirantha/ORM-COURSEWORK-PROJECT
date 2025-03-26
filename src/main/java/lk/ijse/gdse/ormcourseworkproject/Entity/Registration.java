@@ -17,7 +17,6 @@ public class Registration implements SuperEntity {
     private Patient patient;
 
     @ManyToOne
-//    @MapsId("therapyProgrammeId")
     @JoinColumn(name ="therapyProgrammeId")
     private TherapyProgramme therapyProgramme;
 

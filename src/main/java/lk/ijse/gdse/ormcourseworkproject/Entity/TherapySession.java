@@ -33,4 +33,7 @@ public class TherapySession implements SuperEntity {
     private String time;
     private String sessionName;
 
+    public TherapySession(String therapySessionId, Date date, String time, String sessionName, String patientId, String therapistId) {
+
+    }
 }
