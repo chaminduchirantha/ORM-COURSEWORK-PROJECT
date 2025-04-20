@@ -14,11 +14,19 @@ import java.util.List;
 
 @Entity
 @Table(name = "therapyProgramme")
-public class TherapyProgramme implements SuperEntity{
+public class TherapyProgramme implements SuperEntity {
     @Id
     @Column(name = "therapyProgrammeId")
     private String therapyProgrammeId;
     private String therapyProgrammeName;
     private String therapyDuration;
     private double therapyPrice;
+
+
+//
+//    @OneToMany(mappedBy = "therapyProgramme")
+//    private List<Therapist>therapists;
+
+//    public TherapyProgramme(String therapyProgrammeId, String therapyProgrammeName, String therapyDuration, double therapyPrice) {
+//    }
 }

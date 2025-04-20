@@ -73,4 +73,17 @@ public class TherapySessionDaoImpl implements TherapySessionDao {
         session.close();
         return false;
     }
+
+    @Override
+    public boolean updateStatus(String sessionId) throws SQLException, ClassNotFoundException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("UPDATE TherapySession ts SET ts = 'Completed' WHERE ts.sessionID = :sessionId");
+        query.setParameter("sessionId", sessionId);
+        query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }

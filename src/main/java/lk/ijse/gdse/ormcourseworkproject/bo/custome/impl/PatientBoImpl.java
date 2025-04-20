@@ -20,8 +20,8 @@ public class PatientBoImpl implements PatientBo {
     }
 
     @Override
-    public List<PatientDto> getAll(){
-        List<Patient>patients = new ArrayList<>();
+    public List<PatientDto> getAll() throws SQLException, IOException {
+        List<Patient>patients = patientDao.getAll();
         List<PatientDto> patientDtos = new ArrayList<>();
         for(Patient patient:patients){
             PatientDto patientDto = new PatientDto();
@@ -38,7 +38,8 @@ public class PatientBoImpl implements PatientBo {
 
     @Override
     public boolean save(PatientDto patientDto){
-       return patientDao.save(new Patient(patientDto.getPatientID(),patientDto.getPatientName(),patientDto.getGender(),patientDto.getBirthDate(),patientDto.getAddress(),patientDto.getPhone(),patientDto.getMedicalHistory()));
+        System.out.println("PatientBOImpl Saving ID: " + patientDto.getPatientID()); // Debugging
+        return patientDao.save(new Patient(patientDto.getPatientID(),patientDto.getPatientName(),patientDto.getGender(),patientDto.getBirthDate(),patientDto.getAddress(),patientDto.getPhone(),patientDto.getMedicalHistory()));
     }
 
     @Override

@@ -14,5 +14,4 @@ public class TherapistProgrammeTm {
     private String therapyProgrammeName;
     private String therapyDuration;
     private double therapyPrice;
-    private String therapistId;
 }

@@ -14,4 +14,8 @@ public class TherapistDto {
     private String therapistAddress;
     private int age;
     private String therapistPhone;
+    private String therapistProgrammeId;
+
+    public TherapistDto(String therapistId, String therapistName, String therapistAddress, int age, String therapistPhone) {
+    }
 }

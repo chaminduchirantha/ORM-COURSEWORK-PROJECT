@@ -23,4 +23,10 @@ public class Therapist implements SuperEntity {
     private int age;
     private String therapistPhone;
 
+    @ManyToOne
+    @JoinColumn(name = "therapyProgrammeId")
+    private TherapyProgramme therapyProgramme;
+
+    public Therapist(String therapistId, String therapistName, String therapistAddress, int age, String therapistPhone, String therapistProgrammeId) {
+    }
 }

@@ -17,4 +17,5 @@ public class TherapyProgrammeDto {
     private String therapyDuration;
     private double therapyPrice;
 
+
 }

@@ -27,4 +27,6 @@ public class Payment implements SuperEntity {
     @JoinColumn(name = "patientId")
     private Patient patient;
 
+    public Payment(String paymentId, Date paymentDate, String paymentType, double paymentAmount, String patientId) {
+    }
 }

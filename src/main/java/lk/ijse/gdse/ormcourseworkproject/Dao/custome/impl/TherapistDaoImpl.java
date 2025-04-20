@@ -14,13 +14,11 @@ import java.util.List;
 
 public class TherapistDaoImpl implements TherapistDao {
 
-    Session session = FactoryConfiguration.getInstance().getSession();
-    Transaction transaction = session.beginTransaction();
-    Therapist therapist = (Therapist) DaoFactory.getInstance().getDao(DaoFactory.daoType.THERAPIST);
-
 
     @Override
     public String getNextId() throws SQLException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         String hql = "SELECT l.therapistId FROM Therapist l ORDER BY l.therapistId DESC";
         Query<String> query = session.createQuery(hql);
 
@@ -55,6 +53,8 @@ public class TherapistDaoImpl implements TherapistDao {
 
     @Override
     public List<Therapist> getAll(){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         Query<Therapist>therapistQuery=session.createQuery("SELECT t FROM Therapist t", Therapist.class);
         List<Therapist>therapists = therapistQuery.list();
         transaction.commit();
@@ -64,26 +64,33 @@ public class TherapistDaoImpl implements TherapistDao {
 
     @Override
     public boolean save(Therapist therapist) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         session.persist(therapist);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
     public boolean update(Therapist therapist) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         session.merge(therapist);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
     public boolean delete(String pk) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Therapist therapist = new Therapist();
         therapist.setTherapistId(pk);
         session.remove(therapist);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 }

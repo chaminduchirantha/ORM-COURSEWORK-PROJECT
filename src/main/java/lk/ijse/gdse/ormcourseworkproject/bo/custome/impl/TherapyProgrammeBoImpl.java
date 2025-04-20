@@ -23,9 +23,10 @@ public class TherapyProgrammeBoImpl implements TherapyProgrammeBo {
     }
 
     @Override
-    public List<TherapyProgramme> getAll(){
-        List<TherapyProgramme>therapyProgrammes = new ArrayList<TherapyProgramme>();
+    public List<TherapyProgrammeDto> getAll() throws SQLException, IOException {
+        List<TherapyProgramme>therapyProgrammes= therapyProgrammeDao.getAll();
         List<TherapyProgrammeDto>therapyProgrammeDtos=new ArrayList<>();
+
         for (TherapyProgramme therapyProgramme : therapyProgrammes){
             TherapyProgrammeDto therapyProgrammeDto = new TherapyProgrammeDto();
             therapyProgrammeDto.setTherapyProgrammeId(therapyProgramme.getTherapyProgrammeId());
@@ -34,14 +35,13 @@ public class TherapyProgrammeBoImpl implements TherapyProgrammeBo {
             therapyProgrammeDto.setTherapyPrice(therapyProgramme.getTherapyPrice());
             therapyProgrammeDtos.add(therapyProgrammeDto);
         }
-        return therapyProgrammes;
+        return therapyProgrammeDtos;
 
     }
 
     @Override
     public boolean save(TherapyProgrammeDto therapyProgrammeDto){
         return therapyProgrammeDao.save(new TherapyProgramme(therapyProgrammeDto.getTherapyProgrammeId(),therapyProgrammeDto.getTherapyProgrammeName(),therapyProgrammeDto.getTherapyDuration(),therapyProgrammeDto.getTherapyPrice()));
-
     }
 
     @Override

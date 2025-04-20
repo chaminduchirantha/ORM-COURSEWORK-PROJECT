@@ -11,7 +11,7 @@ import java.util.List;
 public interface PatientBo {
 
     public String getNextId() throws SQLException, IOException ;
-    public List<PatientDto> getAll();
+    public List<PatientDto> getAll() throws SQLException, IOException;
     public boolean save(PatientDto patientDto);
     public boolean update (PatientDto patientDto);
     public boolean delete(String pk);

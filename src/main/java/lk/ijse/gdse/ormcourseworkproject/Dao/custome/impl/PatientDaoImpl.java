@@ -14,10 +14,6 @@ import java.util.List;
 
 public class PatientDaoImpl implements PatientDao {
 
-
-
-
-
     @Override
     public String getNextId() throws SQLException, IOException {
 

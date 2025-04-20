@@ -19,4 +19,5 @@ public class PatientDto {
     private String address;
     private String phone;
     private String medicalHistory;
+
 }

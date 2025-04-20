@@ -14,4 +14,5 @@ public class TherapistTm {
     private int age;
     private String therapistPhone;
     private String therapistAddress;
+    private String therapistProgrammeId;
 }

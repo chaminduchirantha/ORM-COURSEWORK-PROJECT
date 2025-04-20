@@ -1,8 +1,7 @@
 package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 
-import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
-import lk.ijse.gdse.ormcourseworkproject.Dao.custome.TherapyProgrammeDao;
-import lk.ijse.gdse.ormcourseworkproject.Entity.TherapyProgramme;
+import lk.ijse.gdse.ormcourseworkproject.Dao.custome.PaymentDao;
+import lk.ijse.gdse.ormcourseworkproject.Entity.Payment;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -12,13 +11,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
+public class PaymentDaoImpl implements PaymentDao {
 
+    @Override
     public String getNextId() throws SQLException, IOException {
-
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction =session.beginTransaction();
-        String hql = "SELECT l.therapyProgrammeId FROM TherapyProgramme l ORDER BY l.therapyProgrammeId DESC";
+        Transaction transaction=session.beginTransaction();
+        String hql = "SELECT m.paymentId FROM Payment m ORDER BY m.paymentId DESC";
         Query<String> query = session.createQuery(hql);
 
         query.setMaxResults(1);
@@ -31,37 +30,38 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
             String substring = lastId.substring(1);
             int i = Integer.parseInt(substring);
             int newIdIndex = i + 1;
-            return String.format("M%03d", newIdIndex);
+            return String.format("P%03d", newIdIndex);
         }
-
-        return "M001";
+        return "P001";
     }
+
     @Override
-    public List<TherapyProgramme> getAll(){
+    public List<Payment> getAll(){
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction =session.beginTransaction();
-        Query<TherapyProgramme>therapyProgrammeQuery=session.createQuery("SELECT tp FROM TherapyProgramme tp", TherapyProgramme.class);
-        List<TherapyProgramme>therapyProgrammeList=therapyProgrammeQuery.list();
+        Transaction transaction=session.beginTransaction();
+        Query<Payment> query = session.createQuery("SELECT m from Payment m", Payment.class);
+        List<Payment> payments = query.list();
         transaction.commit();
         session.close();
-        return therapyProgrammeList;
+        return payments;
     }
 
+
     @Override
-    public boolean save(TherapyProgramme therapyProgramme){
+    public boolean save(Payment payment) {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction =session.beginTransaction();
-        session.persist(therapyProgramme);
+        Transaction transaction = session.beginTransaction();
+        session.persist(payment);
         transaction.commit();
         session.close();
         return true;
     }
 
     @Override
-    public boolean update(TherapyProgramme therapyProgramme){
+    public boolean update(Payment payment) {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction =session.beginTransaction();
-        session.merge(therapyProgramme);
+        Transaction transaction = session.beginTransaction();
+        session.merge(payment);
         transaction.commit();
         session.close();
         return true;
@@ -70,10 +70,10 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
     @Override
     public boolean delete(String pk){
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction =session.beginTransaction();
-        TherapyProgramme therapyProgramme=new TherapyProgramme();
-        therapyProgramme.setTherapyProgrammeId(pk);
-        session.remove( therapyProgramme);
+        Transaction transaction = session.beginTransaction();
+        Payment payment = new Payment();
+        payment.setPaymentId(pk);
+        session.remove(payment);
         transaction.commit();
         session.close();
         return true;

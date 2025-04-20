@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface TherapyProgrammeBo {
     public String getNextId() throws SQLException, IOException ;
-    public List<TherapyProgramme> getAll();
+    public List<TherapyProgrammeDto> getAll() throws SQLException, IOException;
     public boolean save(TherapyProgrammeDto therapyProgrammeDto);
     public boolean update(TherapyProgrammeDto therapyProgrammeDto);
     public boolean delete(String pk);

@@ -90,7 +90,7 @@ public class PatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        clmPatientId.setCellValueFactory(new PropertyValueFactory<>("patientId"));
+        clmPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
         clmPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
         clmGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         clmContactNumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
@@ -123,12 +123,12 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void btnClearOnAction(ActionEvent event) {
+    void btnClearOnAction(ActionEvent event) throws SQLException, IOException {
        refreshPage();
 
     }
 
-    private void refreshPage(){
+    private void refreshPage() throws SQLException, IOException {
         txtPId.setText("");
         txtPName.setText("");
         txtMedicalHistory.setText("");
@@ -147,7 +147,7 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws SQLException, IOException {
         String ID = txtPId.getText();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
@@ -167,7 +167,7 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void btnSaveOnAction(ActionEvent event) {
+    void btnSaveOnAction(ActionEvent event) throws SQLException, IOException {
         String patientId = txtPId.getText();
         String name = txtPName.getText();
         String gender = cmbGender.getValue().toString();
@@ -189,7 +189,7 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+    void btnUpdateOnAction(ActionEvent event) throws SQLException, IOException {
         String patientId = txtPId.getText();
         String name = txtPName.getText();
         String gender = cmbGender.getValue().toString();
@@ -209,7 +209,7 @@ public class PatientController implements Initializable {
         }
     }
 
-    private void loadTable(){
+    private void loadTable() throws SQLException, IOException {
         ArrayList<PatientDto> patientDTOS = (ArrayList<PatientDto>) patientBo.getAll();
         ObservableList<PatientTm> patientTMs = FXCollections.observableArrayList();
 

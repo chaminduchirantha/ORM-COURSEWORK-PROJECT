@@ -10,7 +10,7 @@ public interface TherapistBo {
 
     public String getNextId() throws SQLException, IOException ;
     public TherapistDto findBy(String therapistId) throws SQLException, ClassNotFoundException ;
-    public List<TherapistDto> getAll();
+    public List<TherapistDto> getAll() throws SQLException, IOException;
     public boolean save(TherapistDto therapistDto) ;
     public boolean update(TherapistDto therapistDto) ;
     public boolean delete(String pk) ;
