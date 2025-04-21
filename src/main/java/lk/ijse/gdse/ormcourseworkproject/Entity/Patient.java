@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
@@ -21,13 +21,11 @@ import java.util.List;
 public class Patient implements SuperEntity {
     @Id
     @Column(name = "patientId")
-    private String patientID;
-    private String patientName;
-    private String gender;
-    private LocalDate birthDate;
+    private String patientId;
+    private String name;
+    private Date birthday;
+    private String contactNumber;
     private String medicalHistory;
-    private String address;
-    private String phone;
 
 
     @OneToMany(mappedBy = "patient")
@@ -36,6 +34,11 @@ public class Patient implements SuperEntity {
     @OneToMany(mappedBy = "patient")
     private List<Payment> payments;
 
-    public Patient(String patientID, String patientName, String gender, LocalDate birthDate, String address, String phone, String medicalHistory) {
+    public Patient(String patientId, String name, Date birthday, String contactNumber, String medicalHistory) {
+        this.patientId = patientId;
+        this.name = name;
+        this.birthday = birthday;
+        this.contactNumber = contactNumber;
+        this.medicalHistory = medicalHistory;
     }
 }

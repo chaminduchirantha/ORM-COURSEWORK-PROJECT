@@ -19,7 +19,7 @@ public class PatientDaoImpl implements PatientDao {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
-        String hql = "SELECT l.patientID FROM Patient l ORDER BY l.patientID DESC";
+        String hql = "SELECT l.patientId FROM Patient l ORDER BY l.patientId DESC";
         Query<String> query = session.createQuery(hql);
 
         query.setMaxResults(1);
@@ -77,7 +77,7 @@ public class PatientDaoImpl implements PatientDao {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
         Patient patient = new Patient();
-        patient.setPatientID(pk);
+        patient.setPatientId(pk);
         session.remove(patient);
         transaction.commit();
         session.close();

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Data
@@ -12,12 +13,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 public class PatientDto {
-    private String patientID;
-    private String patientName;
-    private String gender;
-    private LocalDate birthDate;
-    private String address;
-    private String phone;
+    private String patientId;
+    private String name;
+    private Date birthday;
+    private String contactNumber;
     private String medicalHistory;
 
 }

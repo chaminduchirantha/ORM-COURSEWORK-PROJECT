@@ -18,6 +18,7 @@ import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.PatientBoImpl;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,16 +40,10 @@ public class PatientController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private TableColumn<String, PatientTm> clmAddress;
-
-    @FXML
     private TableColumn<String, PatientTm> clmContactNumber;
 
     @FXML
     private TableColumn<String, PatientTm> clmDate;
-
-    @FXML
-    private TableColumn<String, PatientTm> clmGender;
 
     @FXML
     private TableColumn<String, PatientTm> clmHistory;
@@ -90,13 +85,11 @@ public class PatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        clmPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-        clmPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
-        clmGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        clmContactNumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        clmPatientId.setCellValueFactory(new PropertyValueFactory<>("patientId"));
+        clmPatientName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        clmContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
         clmHistory.setCellValueFactory(new PropertyValueFactory<>("medicalHistory"));
-        clmDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
-        clmAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        clmDate.setCellValueFactory(new PropertyValueFactory<>("birthday"));
 
 
         TranslateTransition slider = new TranslateTransition();
@@ -109,7 +102,6 @@ public class PatientController implements Initializable {
         try {
             refreshPage();
             loadTable();
-            loadCmb();
             loadPatientNextId();
         }catch (Exception e){
             e.printStackTrace();
@@ -134,13 +126,11 @@ public class PatientController implements Initializable {
         txtMedicalHistory.setText("");
         txtDate.setValue(LocalDate.now());
         txtPhone.setText("");
-        txtPAddress.setText("");
-        cmbGender.setValue("");
 
         btnSave.setDisable(false);
         btnDelete.setDisable(false);
         btnUpdate.setDisable(true);
-        btnClear.setDisable(true);
+        btnClear.setDisable(false);
         loadTable();
 
 
@@ -170,13 +160,11 @@ public class PatientController implements Initializable {
     void btnSaveOnAction(ActionEvent event) throws SQLException, IOException {
         String patientId = txtPId.getText();
         String name = txtPName.getText();
-        String gender = cmbGender.getValue().toString();
-        LocalDate birthday = txtDate.getValue();
-        String address = txtPAddress.getText();
+        Date birthday = Date.valueOf(txtDate.getValue());
         String medicalHistory = txtMedicalHistory.getText();
         String phone = txtPhone.getText();
 
-        PatientDto patientDTO = new PatientDto(patientId, name,gender, birthday, address, phone, medicalHistory);
+        PatientDto patientDTO = new PatientDto(patientId, name, birthday, phone, medicalHistory);
         boolean isSaved = patientBo.save( patientDTO);
         if(isSaved){
             new Alert(Alert.AlertType.INFORMATION,"Patient Saved successfully").show();
@@ -192,13 +180,11 @@ public class PatientController implements Initializable {
     void btnUpdateOnAction(ActionEvent event) throws SQLException, IOException {
         String patientId = txtPId.getText();
         String name = txtPName.getText();
-        String gender = cmbGender.getValue().toString();
-        LocalDate birthday = txtDate.getValue();
-        String address = txtPAddress.getText();
+        Date birthday = Date.valueOf(txtDate.getValue());
         String medicalHistory = txtMedicalHistory.getText();
         String phone = txtPhone.getText();
 
-        PatientDto patientDTO = new PatientDto(patientId, name,gender, birthday, address, phone, medicalHistory);
+        PatientDto patientDTO = new PatientDto(patientId, name, birthday, phone, medicalHistory);
         boolean isSaved = patientBo.update( patientDTO);
         if(isSaved){
             new Alert(Alert.AlertType.INFORMATION,"Patient update successfully").show();
@@ -215,12 +201,10 @@ public class PatientController implements Initializable {
 
         for (PatientDto patientDTO : patientDTOS) {
             PatientTm patientTM = new PatientTm(
-                    patientDTO.getPatientID(),
-                    patientDTO.getPatientName(),
-                    patientDTO.getGender(),
-                    patientDTO.getBirthDate(),
-                    patientDTO.getAddress(),
-                    patientDTO.getPhone(),
+                    patientDTO.getPatientId(),
+                    patientDTO.getName(),
+                    patientDTO.getBirthday(),
+                    patientDTO.getContactNumber(),
                     patientDTO.getMedicalHistory()
             );
             patientTMs.add(patientTM);
@@ -232,23 +216,15 @@ public class PatientController implements Initializable {
     void tblOnMouseClick(MouseEvent event) {
         PatientTm patientTM = tblPatient.getSelectionModel().getSelectedItem();
         if (patientTM != null) {
-            txtPId.setText(patientTM.getPatientID());
-            txtPName.setText(patientTM.getPatientName());
-            cmbGender.setValue(patientTM.getGender());
-            txtPAddress.setText(patientTM.getAddress());
-            txtPhone.setText(patientTM.getPhone());
-            txtDate.setValue(patientTM.getBirthDate());
+            txtPId.setText(patientTM.getPatientId());
+            txtPName.setText(patientTM.getName());
+            txtPhone.setText(patientTM.getContactNumber());
+            txtDate.setValue(patientTM.getBirthday().toLocalDate());
             txtMedicalHistory.setText(patientTM.getMedicalHistory());
 
             btnDelete.setDisable(false);
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);
         }
-    }
-
-
-    private void loadCmb(){
-        String[]gender ={"Male","Female"};
-        cmbGender.getItems().addAll(gender);
     }
 }

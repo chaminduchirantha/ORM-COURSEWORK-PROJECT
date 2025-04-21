@@ -6,13 +6,21 @@ import lk.ijse.gdse.ormcourseworkproject.Dto.PatientDto;
 import lk.ijse.gdse.ormcourseworkproject.Entity.Patient;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.PatientBo;
 
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PatientBoImpl implements PatientBo {
+
     PatientDao patientDao = new PatientDaoImpl();
+    @Override
+    public boolean save(PatientDto patientDTO) {
+        System.out.println("PatientBOImpl Saving ID: " + patientDTO.getPatientId()); // Debugging
+
+        return patientDao.save(new Patient(patientDTO.getPatientId(),patientDTO.getName(),patientDTO.getBirthday(),patientDTO.getContactNumber(),patientDTO.getMedicalHistory()));
+    }
 
     @Override
     public String getNextId() throws SQLException, IOException {
@@ -21,40 +29,73 @@ public class PatientBoImpl implements PatientBo {
 
     @Override
     public List<PatientDto> getAll() throws SQLException, IOException {
-        List<Patient>patients = patientDao.getAll();
-        List<PatientDto> patientDtos = new ArrayList<>();
-        for(Patient patient:patients){
-            PatientDto patientDto = new PatientDto();
-            patientDto.setPatientID(patient.getPatientID());
-            patientDto.setPatientName(patient.getPatientName());
-            patientDto.setGender(patient.getGender());
-            patientDto.setBirthDate(patient.getBirthDate());
-            patientDto.setAddress(patient.getAddress());
-            patientDto.setPhone(patient.getPhone());
-            patientDtos.add(patientDto);
+        List<Patient> patients = patientDao.getAll();
+        List<PatientDto> patientDTOS = new ArrayList<>();
+
+        for (Patient patient : patients) {
+            PatientDto patientDTO = new PatientDto();
+            patientDTO.setPatientId(patient.getPatientId());
+            patientDTO.setName(patient.getName());
+            patientDTO.setBirthday(patient.getBirthday());
+            patientDTO.setContactNumber(patient.getContactNumber());
+            patientDTO.setMedicalHistory(patient.getMedicalHistory());
+
+            patientDTOS.add(patientDTO);
         }
-        return patientDtos;
+        return patientDTOS;
     }
 
     @Override
-    public boolean save(PatientDto patientDto){
-        System.out.println("PatientBOImpl Saving ID: " + patientDto.getPatientID()); // Debugging
-        return patientDao.save(new Patient(patientDto.getPatientID(),patientDto.getPatientName(),patientDto.getGender(),patientDto.getBirthDate(),patientDto.getAddress(),patientDto.getPhone(),patientDto.getMedicalHistory()));
+    public boolean update(PatientDto patientDTO) throws IOException, SQLException {
+        return patientDao.update(new Patient(patientDTO.getPatientId(),patientDTO.getName(),patientDTO.getBirthday(),patientDTO.getContactNumber(),patientDTO.getMedicalHistory()));
+
     }
 
     @Override
-    public boolean update (PatientDto patientDto){
-        return patientDao.update(new Patient(patientDto.getPatientID(),patientDto.getPatientName(),patientDto.getGender(),patientDto.getBirthDate(),patientDto.getAddress(),patientDto.getPhone(),patientDto.getMedicalHistory()));
-    }
-
-    @Override
-    public boolean delete(String pk){
-        return patientDao.delete(pk);
+    public boolean delete(String ID) throws SQLException, IOException {
+        return patientDao.delete(ID);
     }
 
     @Override
     public PatientDto findBy(String patientId) throws SQLException, ClassNotFoundException {
-       Patient patient = patientDao.findBy(patientId);
-       return new PatientDto(patient.getPatientID(),patient.getPatientName(),patient.getGender(),patient.getBirthDate(),patient.getAddress(),patient.getPhone(),patient.getMedicalHistory());
+        Patient patient = patientDao.findBy(patientId);
+        return new PatientDto(patient.getPatientId(), patient.getName(), patient.getBirthday(), patient.getContactNumber(), patient.getMedicalHistory());
     }
+
+    @Override
+    public ArrayList<String> getAllPatientIds() throws SQLException, ClassNotFoundException, IOException {
+        return null;
+    }
+
+    @Override
+    public int getTotalPatients() throws SQLException, ClassNotFoundException, IOException {
+        return 0;
+    }
+
+    @Override
+    public List<Object[]> getPatientsBySessionId(String sessionId) throws SQLException, ClassNotFoundException {
+        return List.of();
+    }
+
+//    @Override
+//    public ArrayList<String> getAllPatientIds() throws SQLException, ClassNotFoundException, IOException {
+//        ArrayList<String> allIds = new ArrayList<>();
+//        ArrayList<String>all = patientDao.getAllPatientIDs();
+//        for(String p: all){
+//            allIds.add(p);
+//
+//        }
+//        return allIds;
+//    }
+
+//    @Override
+//    public int getTotalPatients() throws SQLException, ClassNotFoundException, IOException {
+//        return patientDao.getTotalPatients();
+//    }
+
+//    @Override
+//    public List<Object[]> getPatientsBySessionId(String sessionId) throws SQLException, ClassNotFoundException, IOException {
+//        return List.of();
+//    }
+
 }
