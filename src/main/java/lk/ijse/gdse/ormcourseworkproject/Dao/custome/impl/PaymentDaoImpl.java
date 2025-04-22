@@ -30,9 +30,9 @@ public class PaymentDaoImpl implements PaymentDao {
             String substring = lastId.substring(1);
             int i = Integer.parseInt(substring);
             int newIdIndex = i + 1;
-            return String.format("P%03d", newIdIndex);
+            return String.format("M%03d", newIdIndex);
         }
-        return "P001";
+        return "M001";
     }
 
     @Override

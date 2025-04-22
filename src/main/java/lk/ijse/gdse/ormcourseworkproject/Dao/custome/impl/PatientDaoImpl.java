@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDaoImpl implements PatientDao {
@@ -95,5 +96,19 @@ public class PatientDaoImpl implements PatientDao {
         }
 
         return patient;
+    }
+
+    @Override
+    public ArrayList<String> getAllPatientIDs() throws SQLException, ClassNotFoundException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = ("SELECT patientId FROM Patient");
+
+        Query query = session.createQuery(hql);
+        ArrayList<String> list = (ArrayList<String>) query.list();
+
+        transaction.commit();
+        session.close();
+        return list;
     }
 }

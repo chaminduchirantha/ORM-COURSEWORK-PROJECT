@@ -5,6 +5,9 @@ import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.PatientDaoImpl;
 import lk.ijse.gdse.ormcourseworkproject.Dto.PatientDto;
 import lk.ijse.gdse.ormcourseworkproject.Entity.Patient;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.PatientBo;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 
 import java.io.IOException;
@@ -63,8 +66,13 @@ public class PatientBoImpl implements PatientBo {
     }
 
     @Override
-    public ArrayList<String> getAllPatientIds() throws SQLException, ClassNotFoundException, IOException {
-        return null;
+    public ArrayList<String> getAllPatientIDs() throws SQLException, ClassNotFoundException, IOException {
+        ArrayList<String> allIds = new ArrayList<>();
+        ArrayList<String>all = patientDao.getAllPatientIDs();
+        for(String id: all){
+            allIds.add(id);
+        }
+        return allIds;
     }
 
     @Override

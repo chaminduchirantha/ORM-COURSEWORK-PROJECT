@@ -5,82 +5,82 @@ import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.PaymentDaoImpl;
 import lk.ijse.gdse.ormcourseworkproject.Dto.PaymentDto;
 import lk.ijse.gdse.ormcourseworkproject.Entity.Patient;
 import lk.ijse.gdse.ormcourseworkproject.Entity.Payment;
+import lk.ijse.gdse.ormcourseworkproject.bo.custome.PaymentBo;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapySessionBo;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentBoImpl {
+public class PaymentBoImpl implements PaymentBo {
     PaymentDao paymentDao = new PaymentDaoImpl();
-    TherapySessionBo therapySessionBo = new TherapySessionBoImpl();
 
     public String getNextId() throws SQLException, IOException {
         return paymentDao.getNextId();
     }
 
 
-    public List<Payment> getAll() throws SQLException, IOException {
-//        List<Payment> payments = paymentDao.getAll();
-//        List<PaymentDto> paymentDtos = new ArrayList<>();
-//        for (Payment payment : payments) {
-//            PaymentDto paymentDto = new PaymentDto();
-//            paymentDto.setPaymentId(payment.getPaymentId());
-//            paymentDto.setPaymentMethod(payment.getPaymentMethod());
-//            paymentDto.setBalance(payment.getBalance());
-//            paymentDto.setTotalAmount(payment.setTotalAmount());
-//            paymentDto.setPatientId(String.valueOf(payment.getPatient()));
-//            paymentDtos.add(paymentDto);
-//
-//        }
-//        return payments;
-        return List.of();
+    public List<PaymentDto> getAll() throws SQLException, IOException {
+     List<Payment> payments = paymentDao.getAll();
+        List<PaymentDto> paymentDTOS = new ArrayList<>();
+
+        for (Payment payment : payments) {
+            PaymentDto paymentDTO = new PaymentDto();
+            paymentDTO.setPaymentId(payment.getPaymentId());
+            if (payment.getPatient() != null) {
+                paymentDTO.setPatientId(payment.getPatient().getPatientId());
+            }else {
+                paymentDTO.setPatientId("N/A");
+            }
+            paymentDTO.setPaymentMethod(payment.getPaymentMethod());
+            paymentDTO.setTotalAmount(payment.getTotalAmount());
+            paymentDTO.setCashPrice(payment.getCashPrice());
+            paymentDTO.setBalance(payment.getBalance());
+            paymentDTOS.add(paymentDTO);
+        }
+        return paymentDTOS;
     }
 
     public boolean save(PaymentDto paymentDto) {
-//        Session session = FactoryConfiguration.getInstance().getSession();
-//        Transaction transaction = session.beginTransaction();
-//        try{
-//            Patient patient = session.get(Patient.class, paymentDto.getPatientId());
-//            if (patient == null) {
-//                return false;
-//            }
-//            Payment payment = new Payment(
-//                    paymentDto.getPaymentId(),
-//                    paymentDto.getPaymentDate(),
-//                    paymentDto.getPaymentType(),
-//                    paymentDto.getPaymentAmount(),
-//                    paymentDto.getPatientId()
-//            );
-//            session.persist(payment);
-//
-//            boolean isStatusUpdated = therapySessionBo.updateStatus(paymentDto.getPaymentId());
-//            if (!isStatusUpdated) {
-//                transaction.rollback();
-//                return false;
-//            }
-//
-//            transaction.commit();
-//            return true;
-//
-//        }catch (Exception e){
-//            transaction.rollback();
-//            e.printStackTrace();
-//            return false;
-//        }finally {
-//            session.close();
-//        }
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Patient patient = session.get(Patient.class, paymentDto.getPatientId());
+        if (patient == null) {
+            return false;
+        }
+        Payment payment = new Payment(
+                paymentDto.getPaymentId(),
+                paymentDto.getPaymentMethod(),
+                paymentDto.getCashPrice(),
+                paymentDto.getBalance(),
+                paymentDto.getTotalAmount(),
+                patient
+
+        );
+        return paymentDao.save(payment);
     }
 
 
     public boolean update(PaymentDto paymentDto) {
-//        return paymentDao.save(new Payment(paymentDto.getPaymentId(),paymentDto.getPaymentDate(),paymentDto.getPaymentType(),paymentDto.getPaymentAmount(),paymentDto.getPatientId()));
-        return false;
+     Session session = FactoryConfiguration.getInstance().getSession();
+
+        Patient patient = session.get(Patient.class, paymentDto.getPatientId());
+        if (patient == null) {
+            return false;
+        }
+        Payment payment = new Payment(
+                paymentDto.getPaymentId(),
+                paymentDto.getPaymentMethod(),
+                paymentDto.getCashPrice(),
+                paymentDto.getBalance(),
+                paymentDto.getTotalAmount(),
+                patient
+
+        );
+        return paymentDao.update(payment);
     }
 
     public boolean delete(String pk){

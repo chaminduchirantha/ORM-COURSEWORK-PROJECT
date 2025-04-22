@@ -16,7 +16,7 @@ public interface PatientBo {
     public boolean update(PatientDto patientDTO) throws IOException, SQLException;
     public boolean delete(String ID) throws SQLException, IOException;
     public PatientDto findBy(String patientId) throws SQLException, ClassNotFoundException;
-    public ArrayList<String> getAllPatientIds() throws SQLException, ClassNotFoundException, IOException;
+    public ArrayList<String> getAllPatientIDs() throws SQLException, ClassNotFoundException, IOException ;
     public int getTotalPatients() throws SQLException, ClassNotFoundException, IOException;
     public List<Object[]> getPatientsBySessionId(String sessionId) throws SQLException, ClassNotFoundException;
 }
