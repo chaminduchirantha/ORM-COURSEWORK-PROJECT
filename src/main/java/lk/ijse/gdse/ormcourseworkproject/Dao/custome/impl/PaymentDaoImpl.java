@@ -58,14 +58,19 @@ public class PaymentDaoImpl implements PaymentDao {
     }
 
     @Override
-    public boolean update(Payment payment) {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.merge(payment);
-        transaction.commit();
-        session.close();
-        return true;
+    public boolean update(Payment entity) {
+        return false;
     }
+
+//    @Override
+//    public boolean update(Payment payment) {
+//        Session session = FactoryConfiguration.getInstance().getSession();
+//        Transaction transaction = session.beginTransaction();
+//        session.merge(payment);
+//        transaction.commit();
+//        session.close();
+//        return true;
+//    }
 
     @Override
     public boolean delete(String pk){
@@ -77,5 +82,10 @@ public class PaymentDaoImpl implements PaymentDao {
         transaction.commit();
         session.close();
         return true;
+    }
+
+    @Override
+    public Payment findBy(String pk) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

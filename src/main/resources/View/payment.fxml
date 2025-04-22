@@ -74,26 +74,10 @@
          </font>
       </TextField>
       <ComboBox fx:id="cmbPatientId" layoutX="558.0" layoutY="246.0" onAction="#cmbOnAction" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
-      <ComboBox fx:id="cmbTherapyProgramme" layoutX="234.0" layoutY="326.0" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <ComboBox fx:id="cmbTherapyProgramme" layoutX="234.0" layoutY="326.0" onAction="#programmeOnAction" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
       <Label fx:id="lblProgrmme" layoutX="430.0" layoutY="326.0" prefHeight="36.0" prefWidth="59.0" />
       <ComboBox fx:id="cmbMethod" layoutX="218.0" layoutY="174.0" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
-      <Button fx:id="btnSave" layoutX="431.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
-         <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
-         </cursor>
-         <font>
-            <Font name="Calibri Bold" size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnUpdate" layoutX="531.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
-         <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
-         </cursor>
-         <font>
-            <Font name="Calibri Bold" size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnDelete" layoutX="630.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
+      <Button fx:id="btnSave" layoutX="644.0" layoutY="383.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
@@ -120,5 +104,13 @@
          </columns>
       </TableView>
       <Label fx:id="lblPatientName" layoutX="558.0" layoutY="297.0" prefHeight="36.0" prefWidth="180.0" />
+      <Button fx:id="btnSave1" layoutX="503.0" layoutY="383.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="131.0" style="-fx-background-color: #2ecc71;" text="Genarte Slip">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

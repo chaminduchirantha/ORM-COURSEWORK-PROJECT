@@ -12,5 +12,4 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface TherapistDao extends CrudDao<Therapist> {
-    public Therapist findBy(String therapistId) throws SQLException, ClassNotFoundException ;
 }

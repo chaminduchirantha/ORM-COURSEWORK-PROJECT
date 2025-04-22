@@ -81,18 +81,18 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
         return true;
     }
 
-//    @Override
-//    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
-//        TherapyProgramme therapyProgramme= null;
-//        try (Session session = FactoryConfiguration.getInstance().getSession()) {
-//            therapyProgramme = session.get(TherapyProgramme.class, therapyProgramme);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("Failed to fetch the patient by ID: " + therapyProgrammeId);
-//        }
-//
-//        return therapyProgramme;
-//    }
+    @Override
+    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
+        TherapyProgramme therapyProgramme= null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            therapyProgramme = session.get(TherapyProgramme.class, therapyProgramme);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to fetch the patient by ID: " + therapyProgrammeId);
+        }
+
+        return therapyProgramme;
+    }
 
     @Override
     public ArrayList<String> getAllTherapyProgrammeId() throws SQLException, ClassNotFoundException, IOException {
@@ -106,10 +106,5 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
         transaction.commit();
         session.close();
         return list;
-    }
-
-    @Override
-    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
-        return null;
     }
 }

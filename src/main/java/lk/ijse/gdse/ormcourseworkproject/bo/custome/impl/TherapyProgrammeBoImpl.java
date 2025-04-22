@@ -2,14 +2,9 @@ package lk.ijse.gdse.ormcourseworkproject.bo.custome.impl;
 
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.TherapyProgrammeDao;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.TherapyProgrammeDaoImpl;
-import lk.ijse.gdse.ormcourseworkproject.Dto.TherapistDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.TherapyProgrammeDto;
 import lk.ijse.gdse.ormcourseworkproject.Entity.TherapyProgramme;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapyProgrammeBo;
-import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -62,18 +57,14 @@ public class TherapyProgrammeBoImpl implements TherapyProgrammeBo {
         return allIds;
     }
 
-//    @Override
-////    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
-////        return therapyProgrammeDao.findBy(therapyProgrammeId);
-////    }
+    @Override
+    public TherapyProgrammeDto findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
+        TherapyProgramme therapyProgramme = therapyProgrammeDao.findBy(therapyProgrammeId);
+        return new TherapyProgrammeDto(therapyProgramme.getTherapyProgrammeId(), therapyProgramme.getTherapyProgrammeName(), therapyProgramme.getTherapyDuration(), therapyProgramme.getTherapyPrice());
+    }
 
     @Override
     public boolean delete(String pk){
         return therapyProgrammeDao.delete(pk);
-    }
-
-    @Override
-    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
-        return null;
     }
 }

@@ -63,24 +63,9 @@ public class PaymentBoImpl implements PaymentBo {
         return paymentDao.save(payment);
     }
 
-
+    @Override
     public boolean update(PaymentDto paymentDto) {
-     Session session = FactoryConfiguration.getInstance().getSession();
-
-        Patient patient = session.get(Patient.class, paymentDto.getPatientId());
-        if (patient == null) {
-            return false;
-        }
-        Payment payment = new Payment(
-                paymentDto.getPaymentId(),
-                paymentDto.getPaymentMethod(),
-                paymentDto.getCashPrice(),
-                paymentDto.getBalance(),
-                paymentDto.getTotalAmount(),
-                patient
-
-        );
-        return paymentDao.update(payment);
+        return false;
     }
 
     public boolean delete(String pk){

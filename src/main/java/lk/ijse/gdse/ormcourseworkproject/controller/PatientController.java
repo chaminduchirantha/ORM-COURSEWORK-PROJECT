@@ -109,18 +109,21 @@ public class PatientController implements Initializable {
         }
     }
 
-    private void loadPatientNextId () throws SQLException, IOException {
-        String nextPatientId = patientBo.getNextId();
-        txtPId.setText(nextPatientId);
+    private void loadPatientNextId (){
+        try{
+            String nextPatientId = patientBo.getNextId();
+            txtPId.setText(nextPatientId);
+        }catch (SQLException | IOException e){
+            new Alert(Alert.AlertType.ERROR, "Load Fail Patient Id").show();
+        }
     }
 
     @FXML
-    void btnClearOnAction(ActionEvent event) throws SQLException, IOException {
+    void btnClearOnAction(ActionEvent event){
        refreshPage();
-
     }
 
-    private void refreshPage() throws SQLException, IOException {
+    private void refreshPage(){
         txtPId.setText("");
         txtPName.setText("");
         txtMedicalHistory.setText("");
@@ -132,84 +135,99 @@ public class PatientController implements Initializable {
         btnUpdate.setDisable(true);
         btnClear.setDisable(false);
         loadTable();
-
-
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) throws SQLException, IOException {
-        String ID = txtPId.getText();
+    void btnDeleteOnAction(ActionEvent event){
+        try {
+            String ID = txtPId.getText();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> optionalButtonType = alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> optionalButtonType = alert.showAndWait();
 
-        if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
+            if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
 
-            boolean isDelete = patientBo.delete(ID);
-            if (isDelete) {
-                refreshPage();
-                new Alert(Alert.AlertType.INFORMATION, "Patient deleted...!").show();
+                boolean isDelete = patientBo.delete(ID);
+                if (isDelete) {
+                    refreshPage();
+                    new Alert(Alert.AlertType.INFORMATION, "Patient deleted...!").show();
 
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to delete Patient...!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to delete Patient...!").show();
+                }
             }
+        }catch (SQLException|IOException e){
+            new Alert(Alert.AlertType.ERROR, "not found ").show();
         }
     }
 
     @FXML
-    void btnSaveOnAction(ActionEvent event) throws SQLException, IOException {
-        String patientId = txtPId.getText();
-        String name = txtPName.getText();
-        Date birthday = Date.valueOf(txtDate.getValue());
-        String medicalHistory = txtMedicalHistory.getText();
-        String phone = txtPhone.getText();
+    void btnSaveOnAction(ActionEvent event){
+        try {
+            String patientId = txtPId.getText();
+            String name = txtPName.getText();
+            Date birthday = Date.valueOf(txtDate.getValue());
+            String medicalHistory = txtMedicalHistory.getText();
+            String phone = txtPhone.getText();
 
-        PatientDto patientDTO = new PatientDto(patientId, name, birthday, phone, medicalHistory);
-        boolean isSaved = patientBo.save( patientDTO);
-        if(isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"Patient Saved successfully").show();
-            loadTable();
+            PatientDto patientDTO = new PatientDto(patientId, name, birthday, phone, medicalHistory);
+            boolean isSaved = patientBo.save( patientDTO);
+            if(isSaved){
+                new Alert(Alert.AlertType.INFORMATION,"Patient Saved successfully").show();
+                loadTable();
                 refreshPage();
-        }
-        else {
-            new Alert(Alert.AlertType.ERROR,"Patient Not Saved Please try Again").show();
+            }
+            else {
+                new Alert(Alert.AlertType.ERROR,"Patient Not Saved Please try Again").show();
+            }
+        }catch (SQLException | IOException e){
+            new Alert(Alert.AlertType.ERROR, "not found ").show();
         }
     }
 
     @FXML
-    void btnUpdateOnAction(ActionEvent event) throws SQLException, IOException {
-        String patientId = txtPId.getText();
-        String name = txtPName.getText();
-        Date birthday = Date.valueOf(txtDate.getValue());
-        String medicalHistory = txtMedicalHistory.getText();
-        String phone = txtPhone.getText();
+    void btnUpdateOnAction(ActionEvent event){
+        try {
+            String patientId = txtPId.getText();
+            String name = txtPName.getText();
+            Date birthday = Date.valueOf(txtDate.getValue());
+            String medicalHistory = txtMedicalHistory.getText();
+            String phone = txtPhone.getText();
 
-        PatientDto patientDTO = new PatientDto(patientId, name, birthday, phone, medicalHistory);
-        boolean isSaved = patientBo.update( patientDTO);
-        if(isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"Patient update successfully").show();
-            refreshPage();
-        }
-        else {
-            new Alert(Alert.AlertType.ERROR,"Patient Not Saved Please try Again").show();
+            PatientDto patientDTO = new PatientDto(patientId, name, birthday, phone, medicalHistory);
+            boolean isSaved = patientBo.update( patientDTO);
+            if(isSaved){
+                new Alert(Alert.AlertType.INFORMATION,"Patient update successfully").show();
+                refreshPage();
+            }
+            else {
+                new Alert(Alert.AlertType.ERROR,"Patient Not Saved Please try Again").show();
+            }
+        }catch (SQLException | IOException e){
+            new Alert(Alert.AlertType.ERROR, "not found ").show();
         }
     }
 
-    private void loadTable() throws SQLException, IOException {
-        ArrayList<PatientDto> patientDTOS = (ArrayList<PatientDto>) patientBo.getAll();
-        ObservableList<PatientTm> patientTMs = FXCollections.observableArrayList();
 
-        for (PatientDto patientDTO : patientDTOS) {
-            PatientTm patientTM = new PatientTm(
-                    patientDTO.getPatientId(),
-                    patientDTO.getName(),
-                    patientDTO.getBirthday(),
-                    patientDTO.getContactNumber(),
-                    patientDTO.getMedicalHistory()
-            );
-            patientTMs.add(patientTM);
+    private void loadTable(){
+        try {
+            ArrayList<PatientDto> patientDTOS = (ArrayList<PatientDto>) patientBo.getAll();
+            ObservableList<PatientTm> patientTMs = FXCollections.observableArrayList();
+
+            for (PatientDto patientDTO : patientDTOS) {
+                PatientTm patientTM = new PatientTm(
+                        patientDTO.getPatientId(),
+                        patientDTO.getName(),
+                        patientDTO.getBirthday(),
+                        patientDTO.getContactNumber(),
+                        patientDTO.getMedicalHistory()
+                );
+                patientTMs.add(patientTM);
+            }
+            tblPatient.setItems(patientTMs);
+        }catch (SQLException | IOException e){
+            new Alert(Alert.AlertType.ERROR, "NOt Load Table").show();
         }
-        tblPatient.setItems(patientTMs);
     }
 
 

@@ -13,6 +13,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PatientDao extends CrudDao<Patient> {
-    public Patient findBy(String patientId) throws SQLException, ClassNotFoundException ;
     public ArrayList<String> getAllPatientIDs() throws SQLException, ClassNotFoundException, IOException ;
 }

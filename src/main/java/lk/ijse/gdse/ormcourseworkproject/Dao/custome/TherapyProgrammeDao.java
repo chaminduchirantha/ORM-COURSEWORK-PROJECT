@@ -13,5 +13,4 @@ import java.util.ArrayList;
 
 public interface TherapyProgrammeDao extends CrudDao<TherapyProgramme> {
     public ArrayList<String> getAllTherapyProgrammeId() throws SQLException, ClassNotFoundException, IOException ;
-    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException ;
 }

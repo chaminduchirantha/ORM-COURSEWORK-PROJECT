@@ -80,6 +80,11 @@ public class UserDaoImpl implements UserDao {
         session.close();
         return true;
     }
+
+    @Override
+    public User findBy(String pk) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }
 
 

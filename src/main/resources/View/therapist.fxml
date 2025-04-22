@@ -8,11 +8,20 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="therpistAncohpane" prefHeight="666.0" prefWidth="861.0" style="-fx-background-color: #ffff; -fx-border-color: #222f3e; -fx-border-radius: 20; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.ormcourseworkproject.controller.TherapistController">
    <children>
+      <Pane layoutY="-8.0" prefHeight="54.0" prefWidth="872.0" style="-fx-background-color: #78e08f;">
+         <children>
+            <Label layoutX="387.0" layoutY="12.0" text="Therapist">
+               <font>
+                  <Font name="Calibri Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <TextField fx:id="txtId" layoutX="189.0" layoutY="135.0" prefHeight="26.0" prefWidth="180.0" promptText="T001" style="-fx-background-color: #fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;">
          <font>
             <Font name="Calibri Bold" size="18.0" />
@@ -63,10 +72,6 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="387.0" layoutY="25.0" text="Therapist">
-         <font>
-            <Font name="Calibri Bold" size="32.0" />
-         </font></Label>
       <TableView fx:id="tblTherapist" layoutX="10.0" layoutY="429.0" onMouseClicked="#tblOnMouseClick" prefHeight="216.0" prefWidth="839.0">
          <columns>
             <TableColumn fx:id="clmTherapistId" prefWidth="112.79998207092285" text="Therapist Id" />
@@ -109,7 +114,6 @@
             <Font name="Calibri Bold" size="17.0" />
          </font>
       </Button>
-      <Line endX="63.60003662109375" endY="0.600006103515625" layoutX="449.0" layoutY="61.0" startX="-62.000030517578125" startY="0.600006103515625" strokeWidth="3.0" />
       <Label fx:id="llblName" layoutX="228.0" layoutY="361.0" prefHeight="36.0" prefWidth="80.0" />
       <ComboBox fx:id="cmbTherapyProgrammeId" layoutX="221.0" layoutY="371.0" onAction="#cmbOnAction" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
       <Label layoutX="42.0" layoutY="378.0" text="Therapy Programme Id">
@@ -117,5 +121,6 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Label>
+      <Label fx:id="lblProgrammeName" layoutX="398.0" layoutY="372.0" prefHeight="34.0" prefWidth="103.0" />
    </children>
 </AnchorPane>

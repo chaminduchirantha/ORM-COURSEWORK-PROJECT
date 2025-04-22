@@ -13,12 +13,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.gdse.ormcourseworkproject.Dto.PatientDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.PaymentDto;
+import lk.ijse.gdse.ormcourseworkproject.Dto.TherapyProgrammeDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.Tm.PatientTm;
 import lk.ijse.gdse.ormcourseworkproject.Dto.Tm.PaymentTm;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.PatientBo;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.PaymentBo;
+import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapyProgrammeBo;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.PatientBoImpl;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.PaymentBoImpl;
+import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.TherapyProgrammeBoImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,14 +35,10 @@ public class PaymentController implements Initializable {
     @FXML
     private Button btnClear;
 
-    @FXML
-    private Button btnDelete;
 
     @FXML
     private Button btnSave;
 
-    @FXML
-    private Button btnUpdate;
 
     @FXML
     private TableColumn<?, ?> clmBalanace;
@@ -66,7 +65,7 @@ public class PaymentController implements Initializable {
     private ComboBox<String> cmbPatientId;
 
     @FXML
-    private ComboBox<?> cmbTherapyProgramme;
+    private ComboBox<String> cmbTherapyProgramme;
 
     @FXML
     private AnchorPane payementAnchorpane;
@@ -94,6 +93,7 @@ public class PaymentController implements Initializable {
 
     PaymentBo paymentBo = new PaymentBoImpl();
     PatientBo patientBo = new PatientBoImpl();
+    TherapyProgrammeBo therapyProgrammeBo = new TherapyProgrammeBoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -117,6 +117,7 @@ public class PaymentController implements Initializable {
             loadNextId();
             loadMethods();
             loadTable();
+            loadProgrammesId();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -126,26 +127,26 @@ public class PaymentController implements Initializable {
     void btnClearOnAction(ActionEvent event) {
 
     }
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) throws SQLException, IOException {
-        String ID = txtpaymentId.getText();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> optionalButtonType = alert.showAndWait();
-
-        if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
-
-            boolean isDelete = patientBo.delete(ID);
-            if (isDelete) {
-                loadTable();
-                new Alert(Alert.AlertType.INFORMATION, "Payment deleted...!").show();
-
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Fail to delete Payment...!").show();
-            }
-        }
-    }
+//
+//    @FXML
+//    void btnDeleteOnAction(ActionEvent event) throws SQLException, IOException {
+//        String ID = txtpaymentId.getText();
+//
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
+//        Optional<ButtonType> optionalButtonType = alert.showAndWait();
+//
+//        if (optionalButtonType.isPresent() && optionalButtonType.get() == ButtonType.YES) {
+//
+//            boolean isDelete = patientBo.delete(ID);
+//            if (isDelete) {
+//                loadTable();
+//                new Alert(Alert.AlertType.INFORMATION, "Payment deleted...!").show();
+//
+//            } else {
+//                new Alert(Alert.AlertType.ERROR, "Fail to delete Payment...!").show();
+//            }
+//        }
+//    }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException, IOException {
@@ -169,27 +170,27 @@ public class PaymentController implements Initializable {
         }
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) throws SQLException, IOException {
-        String PaymentId = txtpaymentId.getText();
-        String paymentMethod = String.valueOf(cmbMethod.getValue());
-        double cashPrice = Double.parseDouble(txtPrice.getText());
-        double balance = Double.parseDouble(txtBalance.getText());
-        double totalAmount = Double.parseDouble(txtTotal.getText());
-        String patientId = String.valueOf(cmbPatientId.getValue());
-
-
-        PaymentDto paymentDTO = new PaymentDto(PaymentId,paymentMethod,cashPrice,balance,totalAmount,patientId);
-        boolean isUpdate = paymentBo.save(paymentDTO);
-
-        if (isUpdate) {
-//            refreshPage();  //
-            loadTable();
-            new Alert(Alert.AlertType.INFORMATION, "Payment Saved SUCCESSFULLY").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "PLEASE TRY AGAIN ").show();
-        }
-    }
+//    @FXML
+//    void btnUpdateOnAction(ActionEvent event) throws SQLException, IOException {
+//        String PaymentId = txtpaymentId.getText();
+//        String paymentMethod = String.valueOf(cmbMethod.getValue());
+//        double cashPrice = Double.parseDouble(txtPrice.getText());
+//        double balance = Double.parseDouble(txtBalance.getText());
+//        double totalAmount = Double.parseDouble(txtTotal.getText());
+//        String patientId = String.valueOf(cmbPatientId.getValue());
+//
+//
+//        PaymentDto paymentDTO = new PaymentDto(PaymentId,paymentMethod,cashPrice,balance,totalAmount,patientId);
+//        boolean isUpdate = paymentBo.save(paymentDTO);
+//
+//        if (isUpdate) {
+////            refreshPage();  //
+//            loadTable();
+//            new Alert(Alert.AlertType.INFORMATION, "Payment Saved SUCCESSFULLY").show();
+//        } else {
+//            new Alert(Alert.AlertType.ERROR, "PLEASE TRY AGAIN ").show();
+//        }
+//    }
 
     @FXML
     void tblOnMouseClick(MouseEvent event) {
@@ -202,9 +203,7 @@ public class PaymentController implements Initializable {
             cmbPatientId.setValue(paymentTm.getPatientId());
             cmbMethod.setValue(paymentTm.getPaymentMethod());
 
-            btnDelete.setDisable(false);
             btnSave.setDisable(true);
-            btnUpdate.setDisable(false);
         }
 
     }
@@ -218,6 +217,18 @@ public class PaymentController implements Initializable {
             lblPatientName.setText(patientDTO.getName());
         }
     }
+
+
+    @FXML
+    void programmeOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String selectedID = cmbTherapyProgramme.getValue();
+        TherapyProgrammeDto therapyProgrammeDto = therapyProgrammeBo.findBy(selectedID);
+
+        if (therapyProgrammeDto != null) {
+            lblPatientName.setText(String.valueOf(therapyProgrammeDto.getTherapyPrice()));
+        }
+    }
+
 
     private void loadTable() throws SQLException, IOException {
         ArrayList<PaymentDto> paymentDtos = (ArrayList<PaymentDto>) paymentBo.getAll();
@@ -246,10 +257,14 @@ public class PaymentController implements Initializable {
         String[]methods = {"Cash Payment", "Card Payment"};
         cmbMethod.getItems().addAll(methods);
     }
+
     private void loadNextId() throws SQLException, IOException {
         String nextPaymentId = paymentBo.getNextId();
         txtpaymentId.setText(nextPaymentId);
     }
 
-
+    private void loadProgrammesId() throws SQLException, IOException, ClassNotFoundException {
+        ArrayList<String> programmeIds = therapyProgrammeBo.getAllTherapyProgrammeId();
+        cmbTherapyProgramme.getItems().addAll(programmeIds);
+    }
 }

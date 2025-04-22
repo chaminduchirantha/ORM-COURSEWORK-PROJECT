@@ -13,7 +13,14 @@
 
 <AnchorPane fx:id="mainAnchorpane" prefHeight="721.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.ormcourseworkproject.controller.HomePageController">
    <children>
-      <AnchorPane fx:id="loadAnchorpane" layoutX="260.0" layoutY="78.0" prefHeight="682.0" prefWidth="900.0" />
+      <AnchorPane fx:id="loadAnchorpane" layoutX="260.0" layoutY="85.0" prefHeight="682.0" prefWidth="900.0">
+         <children>
+            <ImageView fitHeight="682.0" fitWidth="900.0" layoutX="103.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/2111.q707.032.F.m004.c5.physiotherapy%20rehabilitation%20flat%20composition.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
       <Pane layoutY="78.0" prefHeight="682.0" prefWidth="260.0" style="-fx-border-color: #1e272e; -fx-background-color: #1dd1a1;">
          <children>
             <Button fx:id="btnPrograme" contentDisplay="CENTER" layoutX="81.0" layoutY="277.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#programeOnAction" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Therapy Programs," textAlignment="JUSTIFY" textOverrun="CLIP">

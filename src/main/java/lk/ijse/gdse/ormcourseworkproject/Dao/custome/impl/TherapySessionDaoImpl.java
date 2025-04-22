@@ -75,6 +75,11 @@ public class TherapySessionDaoImpl implements TherapySessionDao {
     }
 
     @Override
+    public TherapySession findBy(String pk) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
     public boolean updateStatus(String sessionId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();

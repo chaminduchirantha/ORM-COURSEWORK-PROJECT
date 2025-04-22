@@ -52,7 +52,7 @@ public class TherapistController implements Initializable {
     private ComboBox<String> cmbTherapyProgrammeId;
 
     @FXML
-    private Label llblName;
+    private Label lblProgrammeName;
 
     @FXML
     private TableColumn<TherapistTm, String> clmTherapistName;
@@ -188,10 +188,9 @@ public class TherapistController implements Initializable {
     @FXML
     void cmbOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedID = cmbTherapyProgrammeId.getValue();
-        TherapyProgramme therapyProgrammeDto = therapyProgrammeBo.findBy(selectedID);
-
+        TherapyProgrammeDto therapyProgrammeDto = therapyProgrammeBo.findBy(selectedID);
         if (therapyProgrammeDto != null) {
-            llblName.setText(therapyProgrammeDto.getTherapyProgrammeName());
+            lblProgrammeName.setText(therapyProgrammeDto.getTherapyProgrammeName());
         }
     }
 
@@ -214,8 +213,8 @@ public class TherapistController implements Initializable {
     }
 
     private void loadProgrammeIds() throws SQLException, IOException, ClassNotFoundException {
-        ArrayList<String> patientIds = therapyProgrammeBo.getAllTherapyProgrammeId ();
-        cmbTherapyProgrammeId.getItems().addAll(patientIds);
+        ArrayList<String> programmeIds = therapyProgrammeBo.getAllTherapyProgrammeId ();
+        cmbTherapyProgrammeId.getItems().addAll(programmeIds);
     }
 
 
