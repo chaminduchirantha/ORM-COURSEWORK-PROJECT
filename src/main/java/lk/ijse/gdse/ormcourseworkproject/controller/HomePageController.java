@@ -39,6 +39,9 @@ public class HomePageController implements Initializable {
     private Button btnTheraphist;
 
     @FXML
+    private Button btnUser;
+
+    @FXML
     private ImageView imgPrograme;
 
     @FXML
@@ -82,9 +85,14 @@ public class HomePageController implements Initializable {
     @FXML
     void programeOnAction(ActionEvent event) {
         navigateTo("/View/Programme.fxml");
+    }
 
+    @FXML
+    void userOnAction(ActionEvent event) {
+        navigateTo("/View/user.fxml");
 
     }
+
 
     @FXML
     void sessionOnAction(ActionEvent event) {

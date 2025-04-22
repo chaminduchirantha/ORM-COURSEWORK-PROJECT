@@ -212,6 +212,7 @@ public class PatientController implements Initializable {
         tblPatient.setItems(patientTMs);
     }
 
+
     @FXML
     void tblOnMouseClick(MouseEvent event) {
         PatientTm patientTM = tblPatient.getSelectionModel().getSelectedItem();

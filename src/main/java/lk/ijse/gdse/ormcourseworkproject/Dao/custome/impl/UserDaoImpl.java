@@ -14,13 +14,9 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    Session session = FactoryConfiguration.getInstance().getSession();
-    Transaction transaction = session.beginTransaction();
-    User user = (User) DaoFactory.getInstance().getDao(DaoFactory.daoType.USER);
-
-
-    @Override
     public String getNextId() throws SQLException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         String hql = "SELECT l.usernameId FROM User l ORDER BY l.usernameId DESC";
         Query<String> query = session.createQuery(hql);
 
@@ -43,6 +39,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAll() throws SQLException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         Query<User> query = session.createQuery("SELECT c FROM User c", User.class);
         List<User> customers = query.list();
 
@@ -53,27 +51,34 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean save(User user) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         session.persist(user);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
     public boolean update(User user) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         session.merge(user);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
     public boolean delete(String pk) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = new User();
         user.setUsernameId(pk);
         session.remove(user);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 }
 
