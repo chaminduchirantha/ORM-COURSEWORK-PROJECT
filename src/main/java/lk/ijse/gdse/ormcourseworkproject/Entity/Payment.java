@@ -3,7 +3,6 @@ package lk.ijse.gdse.ormcourseworkproject.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -18,9 +17,11 @@ import java.util.Date;
 public class Payment implements SuperEntity {
     @Id
     private String paymentId;
-    private Date paymentDate;
-    private String paymentType;
-    private double paymentAmount;
+    private String paymentMethod;
+    private double cashPrice;
+    private double balance;
+    private double totalAmount;
+
 
 
     @ManyToOne

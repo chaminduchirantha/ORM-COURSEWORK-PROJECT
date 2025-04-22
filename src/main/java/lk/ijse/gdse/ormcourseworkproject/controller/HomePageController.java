@@ -79,6 +79,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     void paymentOnAction(ActionEvent event) {
+        navigateTo("/View/payment.fxml");
 
     }
 

@@ -1,19 +1,13 @@
-package lk.ijse.gdse.ormcourseworkproject.Dto;
+package lk.ijse.gdse.ormcourseworkproject.Dto.Tm;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.*;
-
-import java.util.Date;
-
 
 @Getter
 @Setter
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PaymentDto {
+public class PaymentTm {
     private String paymentId;
     private String paymentMethod;
     private double cashPrice;

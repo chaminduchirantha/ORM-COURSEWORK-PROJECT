@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="payementAnchorpane" prefHeight="666.0" prefWidth="861.0" style="-fx-background-color: fff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.ormcourseworkproject.controller.PaymentController">
+   <children>
+      <Label layoutX="371.0" layoutY="14.0" text="Payment">
+         <font>
+            <Font name="Calibri Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="61.0" layoutY="106.0" text="Payement Id">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="458.0" layoutY="103.0" text="Cash Price">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="458.0" layoutY="164.0" prefHeight="48.0" prefWidth="77.0" text="Totale">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="458.0" layoutY="253.0" text="Patient Id">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="61.0" layoutY="181.0" text="Pyement Method">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="61.0" layoutY="333.0" prefHeight="22.0" prefWidth="155.0" text="Therpay Programme">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="257.0" text="Balance">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtpaymentId" layoutX="216.0" layoutY="99.0" prefHeight="26.0" prefWidth="180.0" promptText="M001" style="-fx-background-color: #fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtPrice" layoutX="555.0" layoutY="99.0" prefHeight="26.0" prefWidth="180.0" promptText="0000000.00" style="-fx-background-color: #fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTotal" layoutX="555.0" layoutY="174.0" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtBalance" layoutX="215.0" layoutY="250.0" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="cmbPatientId" layoutX="558.0" layoutY="246.0" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <ComboBox fx:id="cmbTherapyProgramme" layoutX="234.0" layoutY="326.0" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <Label layoutX="430.0" layoutY="326.0" prefHeight="36.0" prefWidth="59.0" />
+      <ComboBox fx:id="cmbMethod" layoutX="218.0" layoutY="174.0" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <Button fx:id="btnSave" layoutX="431.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" layoutX="531.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDelete" layoutX="630.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnClear" layoutX="731.0" layoutY="384.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnClearOnAction" prefWidth="80.0" style="-fx-background-color: #c8d6e5;" text="clear">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tblPayment" layoutX="42.0" layoutY="435.0" onMouseClicked="#tblOnMouseClick" prefHeight="200.0" prefWidth="777.0">
+         <columns>
+            <TableColumn fx:id="clmId" prefWidth="102.40001678466797" text="Payement Id" />
+            <TableColumn fx:id="clmPrice" prefWidth="154.39999389648438" text="Cash Price" />
+            <TableColumn fx:id="clmPayement" prefWidth="111.20001220703125" text="Payement Method" />
+            <TableColumn fx:id="clmTottal" prefWidth="136.80001831054688" text="Total" />
+            <TableColumn fx:id="clmBalanace" prefWidth="146.39996337890625" text="Balance" />
+            <TableColumn fx:id="clmPatientId" prefWidth="127.99993896484375" text="Patient Id" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
