@@ -29,4 +29,5 @@ public class Therapist implements SuperEntity {
 
     public Therapist(String therapistId, String therapistName, String therapistAddress, int age, String therapistPhone, String therapistProgrammeId) {
     }
+
 }

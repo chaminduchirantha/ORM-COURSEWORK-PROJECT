@@ -72,11 +72,12 @@
             <TableColumn fx:id="clmTherapistId" prefWidth="112.79998207092285" text="Therapist Id" />
             <TableColumn fx:id="clmTherapistName" prefWidth="172.0" text="Therapist Name" />
             <TableColumn fx:id="cmlTherpistAge" prefWidth="99.20001220703125" text="Age" />
-            <TableColumn fx:id="cmlContactNumber" prefWidth="204.00003051757812" text="Contact Number" />
-            <TableColumn fx:id="cmlAddress" prefWidth="271.99993896484375" text="Address" />
+            <TableColumn fx:id="cmlContactNumber" prefWidth="140.80001831054688" text="Contact Number" />
+            <TableColumn fx:id="cmlAddress" prefWidth="199.20001220703125" text="Address" />
+            <TableColumn fx:id="clmTherapyprogrammId" prefWidth="111.99992675781255" text="Programme Id" />
          </columns>
       </TableView>
-      <Button fx:id="btnSave" layoutX="461.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
+      <Button fx:id="btnSave" layoutX="505.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
@@ -84,7 +85,7 @@
             <Font name="Calibri Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="561.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
+      <Button fx:id="btnUpdate" layoutX="591.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
@@ -92,7 +93,7 @@
             <Font name="Calibri Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="660.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
+      <Button fx:id="btnDelete" layoutX="676.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
@@ -109,7 +110,12 @@
          </font>
       </Button>
       <Line endX="63.60003662109375" endY="0.600006103515625" layoutX="449.0" layoutY="61.0" startX="-62.000030517578125" startY="0.600006103515625" strokeWidth="3.0" />
-      <ComboBox fx:id="cmbProgrmmrId" layoutX="42.0" layoutY="361.0" prefHeight="36.0" prefWidth="160.0" promptText="therapy Progrmme Id" />
       <Label fx:id="llblName" layoutX="228.0" layoutY="361.0" prefHeight="36.0" prefWidth="80.0" />
+      <ComboBox fx:id="cmbTherapyProgrammeId" layoutX="221.0" layoutY="371.0" onAction="#cmbOnAction" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <Label layoutX="42.0" layoutY="378.0" text="Therapy Programme Id">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

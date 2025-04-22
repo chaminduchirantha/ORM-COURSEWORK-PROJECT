@@ -2,6 +2,7 @@ package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 
 import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.TherapyProgrammeDao;
+import lk.ijse.gdse.ormcourseworkproject.Entity.Patient;
 import lk.ijse.gdse.ormcourseworkproject.Entity.TherapyProgramme;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
 import org.hibernate.Session;
@@ -10,6 +11,7 @@ import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
@@ -77,5 +79,37 @@ public class TherapyProgrammeDaoImpl implements TherapyProgrammeDao {
         transaction.commit();
         session.close();
         return true;
+    }
+
+//    @Override
+//    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
+//        TherapyProgramme therapyProgramme= null;
+//        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+//            therapyProgramme = session.get(TherapyProgramme.class, therapyProgramme);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("Failed to fetch the patient by ID: " + therapyProgrammeId);
+//        }
+//
+//        return therapyProgramme;
+//    }
+
+    @Override
+    public ArrayList<String> getAllTherapyProgrammeId() throws SQLException, ClassNotFoundException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql = ("SELECT therapyProgrammeId  FROM TherapyProgramme");
+
+        Query query = session.createQuery(hql);
+        ArrayList<String> list = (ArrayList<String>) query.list();
+
+        transaction.commit();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

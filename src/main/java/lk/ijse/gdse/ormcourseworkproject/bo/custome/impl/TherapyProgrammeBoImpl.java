@@ -6,6 +6,9 @@ import lk.ijse.gdse.ormcourseworkproject.Dto.TherapistDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.TherapyProgrammeDto;
 import lk.ijse.gdse.ormcourseworkproject.Entity.TherapyProgramme;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapyProgrammeBo;
+import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -50,7 +53,27 @@ public class TherapyProgrammeBoImpl implements TherapyProgrammeBo {
     }
 
     @Override
+    public ArrayList<String> getAllTherapyProgrammeId() throws SQLException, ClassNotFoundException, IOException {
+        ArrayList<String> allIds = new ArrayList<>();
+        ArrayList<String>all = therapyProgrammeDao.getAllTherapyProgrammeId();
+        for(String id: all){
+            allIds.add(id);
+        }
+        return allIds;
+    }
+
+//    @Override
+////    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
+////        return therapyProgrammeDao.findBy(therapyProgrammeId);
+////    }
+
+    @Override
     public boolean delete(String pk){
         return therapyProgrammeDao.delete(pk);
+    }
+
+    @Override
+    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

@@ -16,4 +16,6 @@ public interface TherapyProgrammeBo {
     public boolean save(TherapyProgrammeDto therapyProgrammeDto);
     public boolean update(TherapyProgrammeDto therapyProgrammeDto);
     public boolean delete(String pk);
+    public TherapyProgramme findBy(String therapyProgrammeId) throws SQLException, ClassNotFoundException ;
+    public ArrayList<String> getAllTherapyProgrammeId() throws SQLException, ClassNotFoundException, IOException ;
 }

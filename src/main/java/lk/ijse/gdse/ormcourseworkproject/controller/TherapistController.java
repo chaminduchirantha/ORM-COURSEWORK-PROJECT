@@ -11,10 +11,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.ijse.gdse.ormcourseworkproject.Dto.PatientDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.TherapistDto;
+import lk.ijse.gdse.ormcourseworkproject.Dto.TherapyProgrammeDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.Tm.TherapistTm;
+import lk.ijse.gdse.ormcourseworkproject.Entity.TherapyProgramme;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapistBo;
+import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapyProgrammeBo;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.TherapistBoImpl;
+import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.TherapyProgrammeBoImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +49,7 @@ public class TherapistController implements Initializable {
     private TableColumn<TherapistTm, String> clmTherapistId;
 
     @FXML
-    private ComboBox<?> cmbProgrmmrId;
+    private ComboBox<String> cmbTherapyProgrammeId;
 
     @FXML
     private Label llblName;
@@ -57,6 +62,9 @@ public class TherapistController implements Initializable {
 
     @FXML
     private TableColumn<TherapistTm, String> cmlContactNumber;
+
+    @FXML
+    private TableColumn<?, ?> clmTherapyprogrammId;
 
     @FXML
     private TableColumn<TherapistTm, Integer> cmlTherpistAge;
@@ -84,6 +92,7 @@ public class TherapistController implements Initializable {
 
 
     TherapistBo therapistBo = new TherapistBoImpl();
+    TherapyProgrammeBo therapyProgrammeBo = new TherapyProgrammeBoImpl();
 
     @Override
 
@@ -93,10 +102,12 @@ public class TherapistController implements Initializable {
         cmlTherpistAge.setCellValueFactory(new PropertyValueFactory<>("age"));
         cmlContactNumber.setCellValueFactory(new PropertyValueFactory<>("therapistPhone"));
         cmlAddress.setCellValueFactory(new PropertyValueFactory<>("therapistAddress"));
+        clmTherapyprogrammId.setCellValueFactory(new PropertyValueFactory<>("therapistProgrammeId"));
 
         try {
             loadTable();
             loadTherapistNextId();
+            loadProgrammeIds();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -141,7 +152,7 @@ public class TherapistController implements Initializable {
         String therapistAddress = txtAddress.getText();
         int age = Integer.parseInt(txtAge.getText());
         String phone = txtPhone.getText();
-        String therapyProgrammeId = (String) cmbProgrmmrId.getValue();
+        String therapyProgrammeId = String.valueOf(cmbTherapyProgrammeId.getValue());
 
         TherapistDto therapistDto = new TherapistDto(therapistId, therapistName,therapistAddress, age, phone, therapyProgrammeId);
         boolean isSaved = therapistBo.save( therapistDto);
@@ -161,7 +172,7 @@ public class TherapistController implements Initializable {
         String therapistAddress = txtAddress.getText();
         int age = Integer.parseInt(txtAge.getText());
         String phone = txtPhone.getText();
-        String therapyProgrammeId = String.valueOf(cmbProgrmmrId.getValue());
+        String therapyProgrammeId = String.valueOf(cmbTherapyProgrammeId.getValue());
 
         TherapistDto therapistDto = new TherapistDto(therapistId, therapistName,therapistAddress, age, phone,therapyProgrammeId);
         boolean isSaved = therapistBo. update( therapistDto);
@@ -171,6 +182,16 @@ public class TherapistController implements Initializable {
         }
         else {
             new Alert(Alert.AlertType.ERROR,"Therapist Not Saved Please try Again").show();
+        }
+    }
+
+    @FXML
+    void cmbOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String selectedID = cmbTherapyProgrammeId.getValue();
+        TherapyProgramme therapyProgrammeDto = therapyProgrammeBo.findBy(selectedID);
+
+        if (therapyProgrammeDto != null) {
+            llblName.setText(therapyProgrammeDto.getTherapyProgrammeName());
         }
     }
 
@@ -190,6 +211,11 @@ public class TherapistController implements Initializable {
             therapistTms.add(therapistTm);
         }
         tblTherapist.setItems(therapistTms);
+    }
+
+    private void loadProgrammeIds() throws SQLException, IOException, ClassNotFoundException {
+        ArrayList<String> patientIds = therapyProgrammeBo.getAllTherapyProgrammeId ();
+        cmbTherapyProgrammeId.getItems().addAll(patientIds);
     }
 
 
@@ -227,5 +253,7 @@ public class TherapistController implements Initializable {
         String nextTherapistId = therapistBo.getNextId();
         txtId.setText(nextTherapistId);
     }
+
+
 
 }
