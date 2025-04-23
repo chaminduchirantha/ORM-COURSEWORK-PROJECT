@@ -24,16 +24,14 @@ public class TherapySession implements SuperEntity {
     @JoinColumn(name = "patientId")
     private Patient patient;
 
-
-    @ManyToOne
-    @JoinColumn(name = "therapist_id")
-    private Therapist therapist;
-
     private Date date;
     private String time;
     private String sessionName;
 
-    public TherapySession(String therapySessionId, Date date, String time, String sessionName, String patientId, String therapistId) {
+    @ManyToOne
+    @JoinColumn(name = "therapyProgrammeId")
+    private TherapyProgramme therapyProgramme;
 
+    public TherapySession(String therapySessionId, String sessionName, Date date, String time, Patient patient, TherapyProgramme therapist) {
     }
 }

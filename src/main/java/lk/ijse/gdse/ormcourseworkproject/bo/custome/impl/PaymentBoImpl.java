@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.bo.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.PaymentDao;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.PaymentDaoImpl;
 import lk.ijse.gdse.ormcourseworkproject.Dto.PaymentDto;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentBoImpl implements PaymentBo {
-    PaymentDao paymentDao = new PaymentDaoImpl();
+    PaymentDao paymentDao = (PaymentDao) DaoFactory.getInstance().getDao(DaoFactory.daoType.PAYEMENT);
 
     public String getNextId() throws SQLException, IOException {
         return paymentDao.getNextId();

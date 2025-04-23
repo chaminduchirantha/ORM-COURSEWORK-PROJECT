@@ -1,13 +1,14 @@
 package lk.ijse.gdse.ormcourseworkproject.bo.custome;
 
 import lk.ijse.gdse.ormcourseworkproject.Dto.TherapyProgrammeDto;
+import lk.ijse.gdse.ormcourseworkproject.bo.SuperBo;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface TherapyProgrammeBo {
+public interface TherapyProgrammeBo extends SuperBo {
     public String getNextId() throws SQLException, IOException ;
     public List<TherapyProgrammeDto> getAll() throws SQLException, IOException;
     public boolean save(TherapyProgrammeDto therapyProgrammeDto);

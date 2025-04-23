@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="userAnchorpane" prefHeight="666.0" prefWidth="861.0" style="-fx-background-color: fff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.ormcourseworkproject.controller.UserController">
    <children>
       <Label layoutX="400.0" layoutY="23.0" text="User">
@@ -55,7 +54,7 @@
       </TextField>
       <Button fx:id="btnSave" layoutX="400.0" layoutY="300.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -63,7 +62,7 @@
       </Button>
       <Button fx:id="btnUpdate" layoutX="500.0" layoutY="300.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -71,7 +70,7 @@
       </Button>
       <Button fx:id="btnDelete" layoutX="599.0" layoutY="300.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -79,7 +78,7 @@
       </Button>
       <Button fx:id="btnClear" layoutX="700.0" layoutY="300.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnClearOnAction" prefWidth="80.0" style="-fx-background-color: #c8d6e5;" text="clear">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -93,6 +92,6 @@
             <TableColumn fx:id="clmRole" prefWidth="180.79995117187502" text="User Role" />
          </columns>
       </TableView>
-      <ComboBox fx:id="cmbRole" layoutX="580.0" layoutY="201.0" prefHeight="36.0" prefWidth="174.0" promptText="User or Admin" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <ComboBox fx:id="cmbRole" layoutX="580.0" layoutY="201.0" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0; -fx-font-size: 16; -fx-font-weight: bold;" />
    </children>
 </AnchorPane>

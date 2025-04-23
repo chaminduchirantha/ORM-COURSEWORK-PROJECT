@@ -1,11 +1,13 @@
 package lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl;
 
+import jakarta.persistence.NoResultException;
 import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.UserDao;
 import lk.ijse.gdse.ormcourseworkproject.Entity.User;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -14,6 +16,85 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+    @Override
+    public User getUser(String name) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        User user = null;
+
+        try {
+            String hql = "FROM User WHERE userName = :username";
+            user = session.createQuery(hql, User.class)
+                    .setParameter("username", name)
+                    .getSingleResult();
+        } catch (NoResultException ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return user;
+    }
+
+    @Override
+    public User getData(String ids) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        User user = null;
+
+        try {
+            String hql = "FROM User WHERE usernameId = :userId";
+            user = session.createQuery(hql, User.class)
+                    .setParameter("userId", ids)
+                    .getSingleResult();
+        } catch (NoResultException ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return user;
+    }
+
+    @Override
+    public String getuserId(String username) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        try {
+            String hql = "FROM User WHERE userName = :username";
+            User user = session.createQuery(hql, User.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+            return user.getUsernameId();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean updatePassword(String username, String newPassword) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE User SET userPassword = :password WHERE userName = :username";
+            int result = session.createQuery(hql)
+                    .setParameter("password", newPassword)
+                    .setParameter("username", username)
+                    .executeUpdate();
+
+            transaction.commit();
+            return result > 0;
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
     public String getNextId() throws SQLException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();

@@ -15,7 +15,7 @@
    <children>
       <Pane layoutY="-8.0" prefHeight="54.0" prefWidth="872.0" style="-fx-background-color: #78e08f;">
          <children>
-            <Label layoutX="387.0" layoutY="12.0" text="Therapist">
+            <Label layoutX="387.0" layoutY="14.0" text="Therapist">
                <font>
                   <Font name="Calibri Bold" size="25.0" />
                </font>
@@ -84,7 +84,7 @@
       </TableView>
       <Button fx:id="btnSave" layoutX="505.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -92,7 +92,7 @@
       </Button>
       <Button fx:id="btnUpdate" layoutX="591.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -100,7 +100,7 @@
       </Button>
       <Button fx:id="btnDelete" layoutX="676.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -108,14 +108,14 @@
       </Button>
       <Button fx:id="btnClear" layoutX="761.0" layoutY="373.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnClearCustomerOnAction" prefWidth="80.0" style="-fx-background-color: #c8d6e5;" text="clear">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
          </font>
       </Button>
       <Label fx:id="llblName" layoutX="228.0" layoutY="361.0" prefHeight="36.0" prefWidth="80.0" />
-      <ComboBox fx:id="cmbTherapyProgrammeId" layoutX="221.0" layoutY="371.0" onAction="#cmbOnAction" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0;" />
+      <ComboBox fx:id="cmbTherapyProgrammeId" layoutX="226.0" layoutY="371.0" onAction="#cmbOnAction" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: fff; -fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0; -fx-font-weight: bold; -fx-font-size: 16;" />
       <Label layoutX="42.0" layoutY="378.0" text="Therapy Programme Id">
          <font>
             <Font name="Calibri Bold" size="18.0" />

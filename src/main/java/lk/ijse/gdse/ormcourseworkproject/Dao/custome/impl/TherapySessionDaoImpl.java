@@ -14,14 +14,11 @@ import java.util.List;
 
 public class TherapySessionDaoImpl implements TherapySessionDao {
 
-    Session session = FactoryConfiguration.getInstance().getSession();
-    Transaction transaction=session.beginTransaction();
-
-    TherapySession therapySession = (TherapySession) DaoFactory.getInstance().getDao(DaoFactory.daoType.THERAPYSESSION);
-
 
     @Override
     public String getNextId() throws SQLException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         String hql = "SELECT l.sessionID FROM TherapySession l ORDER BY l.sessionID DESC";
         Query<String> query = session.createQuery(hql);
 
@@ -35,14 +32,16 @@ public class TherapySessionDaoImpl implements TherapySessionDao {
             String substring = lastId.substring(1);
             int i = Integer.parseInt(substring);
             int newIdIndex = i + 1;
-            return String.format("T%03d", newIdIndex);
+            return String.format("S%03d", newIdIndex);
         }
 
-        return "T001";
+        return "S001";
     }
 
     @Override
     public List<TherapySession> getAll(){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         Query<TherapySession>therapySessionQuery = session.createQuery("SELECT s from TherapySession s", TherapySession.class);
         List<TherapySession>therapySessions=therapySessionQuery.list();
         transaction.commit();
@@ -51,22 +50,29 @@ public class TherapySessionDaoImpl implements TherapySessionDao {
     }
     @Override
     public boolean save(TherapySession therapySession) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         session.persist(therapySession);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
     public boolean update(TherapySession therapySession) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
         session.merge(therapySession);
         transaction.commit();
         session.close();
-        return false;
+        return true;
     }
 
     @Override
     public boolean delete(String pk){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+        TherapySession therapySession = new TherapySession();
         therapySession.setSessionID(pk);
         session.persist(therapySession);
         transaction.commit();

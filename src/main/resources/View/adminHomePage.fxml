@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainAnchorpane" prefHeight="721.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.ormcourseworkproject.controller.AdminHomePageController">
+   <children>
+      <AnchorPane fx:id="loadAnchorpane" layoutX="260.0" layoutY="85.0" prefHeight="682.0" prefWidth="900.0">
+         <children>
+            <ImageView fitHeight="682.0" fitWidth="900.0" layoutX="103.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/2111.q707.032.F.m004.c5.physiotherapy%20rehabilitation%20flat%20composition.jpg" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></AnchorPane>
+      <Pane layoutY="78.0" prefHeight="682.0" prefWidth="260.0" style="-fx-border-color: #1e272e; -fx-background-color: #1dd1a1;">
+         <children>
+            <Button fx:id="btnPrograme" contentDisplay="CENTER" layoutX="81.0" layoutY="277.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#programeOnAction" prefHeight="36.0" prefWidth="164.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Therapy Programs," textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnPationt" contentDisplay="CENTER" layoutX="84.0" layoutY="356.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#pationtOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Patients" textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnLogOut" contentDisplay="CENTER" layoutX="84.0" layoutY="597.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#logoutOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Log Out" textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnPayment" contentDisplay="CENTER" layoutX="84.0" layoutY="514.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#paymentOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Payments" textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnSesstion" contentDisplay="CENTER" layoutX="84.0" layoutY="437.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#sessionOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Therapy Sessions" textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnTheraphist" contentDisplay="CENTER" layoutX="84.0" layoutY="203.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#theraphistOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="Therapists" textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Serenity Mental Health &#10;           Therapy Center">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Text>
+            <Line endX="129.99996948242188" layoutX="130.0" layoutY="105.0" startX="-130.00001525878906" />
+            <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="13.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-patient-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="17.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-payment-50.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="15.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-session-timeout-50.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgPrograme" fitHeight="49.0" fitWidth="50.0" layoutX="14.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-test-results-50.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgTheraphist" fitHeight="49.0" fitWidth="50.0" layoutX="15.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-physical-therapy-50.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="50.0" layoutX="17.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-log-out-48.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnUser" contentDisplay="CENTER" layoutX="82.0" layoutY="135.0" lineSpacing="10.0" mnemonicParsing="false" onAction="#userOnAction" prefHeight="36.0" prefWidth="158.0" style="-fx-background-color: #1dd1a1; -fx-background-radius: 5; -fx-border-color: #009432; -fx-border-radius: 5; -fx-border-width: 0 0 1px 0;" text="User" textAlignment="JUSTIFY" textOverrun="CLIP">
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fx:id="imgTheraphist1" fitHeight="49.0" fitWidth="50.0" layoutX="13.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-user-50.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane prefHeight="78.0" prefWidth="1160.0" style="-fx-background-color: #12CBC4;">
+         <children>
+            <Text layoutX="341.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mental Health Therapy Center Management System">
+               <font>
+                  <Font name="Calibri Bold" size="29.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

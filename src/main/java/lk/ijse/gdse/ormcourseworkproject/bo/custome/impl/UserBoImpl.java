@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.bo.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.UserDao;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.UserDaoImpl;
 import lk.ijse.gdse.ormcourseworkproject.Dto.UserDto;
@@ -8,6 +9,7 @@ import lk.ijse.gdse.ormcourseworkproject.bo.custome.UserBo;
 import lk.ijse.gdse.ormcourseworkproject.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -16,7 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserBoImpl implements UserBo {
-    UserDao userDao = new UserDaoImpl();
+    UserDao userDao = (UserDao) DaoFactory.getInstance().getDao(DaoFactory.daoType.USER);
+
 
     @Override
     public String getNextId() throws SQLException, IOException {
@@ -52,5 +55,36 @@ public class UserBoImpl implements UserBo {
     @Override
     public boolean delete(String pk) {
         return userDao.delete(pk);
+    }
+
+    public User getUsers(String role) {
+        return userDao.getUser(role);
+    }
+
+    @Override
+    public UserDto getUser(String ids) {
+
+        User user = userDao.getData(ids);
+        if (user == null) {
+            return null;
+        } else {
+            return new UserDto(user.getUsernameId(),user.getUserName(),user.getUserPassword(),user.getUserRole());
+        }
+    }
+
+    @Override
+    public String getuserId(String username) {
+        return userDao.getuserId(username);
+    }
+
+
+    @Override
+    public boolean changePassword(String username, String newPassword) {
+        return userDao.updatePassword(username, newPassword);
+    }
+
+    @Override
+    public boolean updatePassword(String username, String newPassword) {
+        return userDao.updatePassword(username, newPassword);
     }
 }

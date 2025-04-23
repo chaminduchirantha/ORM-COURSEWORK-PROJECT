@@ -58,7 +58,7 @@
       </TableView>
       <Button fx:id="btnSave" layoutX="471.0" layoutY="377.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSaveOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Save">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -66,7 +66,7 @@
       </Button>
       <Button fx:id="btnUpdate" layoutX="571.0" layoutY="377.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="#050505">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -74,7 +74,7 @@
       </Button>
       <Button fx:id="btnDelete" layoutX="670.0" layoutY="377.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefWidth="80.0" style="-fx-background-color: #2ecc71;" text="Delete">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -82,7 +82,7 @@
       </Button>
       <Button fx:id="btnClear" layoutX="771.0" layoutY="377.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnClearOnAction" prefWidth="80.0" style="-fx-background-color: #c8d6e5;" text="clear">
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -103,6 +103,6 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Label>
-      <DatePicker fx:id="txtDate" layoutX="203.0" layoutY="166.0" prefHeight="36.0" prefWidth="175.0" promptText="--/--/----" style="-fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0; -fx-background-color: #ffff;" />
+      <DatePicker fx:id="txtDate" layoutX="203.0" layoutY="166.0" prefHeight="36.0" prefWidth="175.0" promptText="--/--/----" style="-fx-border-color: #10ac84; -fx-border-width: 0 0 1px 0; -fx-background-color: #ffff; -fx-font-weight: bold; -fx-opacity: 10; -fx-translate-x: 1.2; -fx-font-size: 16;" />
    </children>
 </AnchorPane>

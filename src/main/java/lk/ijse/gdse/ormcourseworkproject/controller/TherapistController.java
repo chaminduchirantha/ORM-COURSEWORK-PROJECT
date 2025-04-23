@@ -252,7 +252,4 @@ public class TherapistController implements Initializable {
         String nextTherapistId = therapistBo.getNextId();
         txtId.setText(nextTherapistId);
     }
-
-
-
 }

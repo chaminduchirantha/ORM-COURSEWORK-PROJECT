@@ -3,20 +3,17 @@ package lk.ijse.gdse.ormcourseworkproject.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController{
 
     @FXML
     private AnchorPane LoginAnchorPane;
@@ -35,6 +32,10 @@ public class LoginController {
 
     @FXML
     private TextField txtPassword01;
+
+    @FXML
+    private ComboBox<String> cmbRole;
+
 
 
     @FXML
@@ -96,12 +97,12 @@ public class LoginController {
                 if ((username.equals("admin") && password.equals("1234")||
                         (username.equals("user") && password.equals("1234")))){
                     if (username.equals("admin")) {
-                        HomePageController.isAdmin = true;
+                        AdminHomePageController.isAdmin = true;
                     }else {
-                        HomePageController.isAdmin = false;
+                        AdminHomePageController.isAdmin = false;
                     }
                     LoginAnchorPane.getChildren().clear();
-                    AnchorPane load = FXMLLoader.load(getClass().getResource("/view/HomePage.fxml"));
+                    AnchorPane load = FXMLLoader.load(getClass().getResource("/View/adminHomePage.fxml"));
                     LoginAnchorPane.getChildren().add(load);
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Invalid username or password ").show();

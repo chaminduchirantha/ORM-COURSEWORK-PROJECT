@@ -9,6 +9,7 @@ module lk.ijse.gdse.ormcourseworkproject {
 
     requires org.hibernate.orm.core;
     requires java.naming;
+    requires jbcrypt;
 
     opens lk.ijse.gdse.ormcourseworkproject.Entity to org.hibernate.orm.core;
     opens lk.ijse.gdse.ormcourseworkproject.config to jakarta.persistence;

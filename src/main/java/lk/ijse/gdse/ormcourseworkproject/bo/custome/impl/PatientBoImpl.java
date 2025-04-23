@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.bo.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.PatientDao;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.PatientDaoImpl;
 import lk.ijse.gdse.ormcourseworkproject.Dto.PatientDto;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class PatientBoImpl implements PatientBo {
 
-    PatientDao patientDao = new PatientDaoImpl();
+    PatientDao patientDao = (PatientDao) DaoFactory.getInstance().getDao(DaoFactory.daoType.PATIENT);
     @Override
     public boolean save(PatientDto patientDTO) {
         System.out.println("PatientBOImpl Saving ID: " + patientDTO.getPatientId()); // Debugging

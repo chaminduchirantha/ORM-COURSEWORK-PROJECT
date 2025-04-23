@@ -15,6 +15,7 @@ import lk.ijse.gdse.ormcourseworkproject.Dto.PatientDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.TherapyProgrammeDto;
 import lk.ijse.gdse.ormcourseworkproject.Dto.Tm.PatientTm;
 import lk.ijse.gdse.ormcourseworkproject.Dto.Tm.TherapistProgrammeTm;
+import lk.ijse.gdse.ormcourseworkproject.bo.BoFactory;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.TherapyProgrammeBo;
 import lk.ijse.gdse.ormcourseworkproject.bo.custome.impl.TherapyProgrammeBoImpl;
 
@@ -59,6 +60,9 @@ public class ProgrammeController implements Initializable {
     private TableView<TherapistProgrammeTm> tblProgrmme;
 
     @FXML
+    private ComboBox<String> cmbTherapyProgrammeName;
+
+    @FXML
     private TextField txtDuration;
 
     @FXML
@@ -76,7 +80,7 @@ public class ProgrammeController implements Initializable {
     @FXML
     private AnchorPane programmeAnchorPane;
 
-    TherapyProgrammeBo therapyProgrammeBo = new TherapyProgrammeBoImpl();
+    TherapyProgrammeBo therapyProgrammeBo = (TherapyProgrammeBo) BoFactory.getInstance().getBo(BoFactory.boType.THERAPYPROGRAMME);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,11 +97,12 @@ public class ProgrammeController implements Initializable {
         clmDuration.setCellValueFactory(new PropertyValueFactory<>("therapyDuration"));
         clmFees.setCellValueFactory(new PropertyValueFactory<>("therapyPrice"));
 
-        try{
+        try {
             loadTable();
             refreshPage();
+            loadProgrammes();
 //            loadTherapyProgrammeId();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -113,9 +118,14 @@ public class ProgrammeController implements Initializable {
 //        txtProgrammeId.setText(nextTherapyProgrammeId);
 //    }
 
+    private void loadProgrammes() {
+        String[] programmes = {"Cognitive Behavioral Therapy", "Mindfulness-Based Stress Reduction", "Dialectical Behavior Therapy", "Group Therapy Sessions", "Family Counseling"};
+        cmbTherapyProgrammeName.getItems().addAll(programmes);
+    }
+
     private void refreshPage() throws SQLException, IOException {
         txtProgrammeId.setText("");
-        txtProgrammeName.setText("");
+        cmbTherapyProgrammeName.setValue("");
         txtDuration.setText("");
         txtFees.setText("");
 
@@ -152,37 +162,35 @@ public class ProgrammeController implements Initializable {
     void btnSaveCustomerOnAction(ActionEvent event) throws SQLException, IOException {
 
         String programmeId = txtProgrammeId.getText();
-        String programmeName = txtProgrammeName.getText();
+        String programmeName = cmbTherapyProgrammeName.getValue();
         String programmeDuration = txtDuration.getText();
         double price = Double.parseDouble(txtFees.getText());
 
-        TherapyProgrammeDto therapyProgrammeDto = new TherapyProgrammeDto(programmeId, programmeName,programmeDuration, price);
-        boolean isSaved = therapyProgrammeBo.save( therapyProgrammeDto);
-        if(isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"Therapy Programme Saved successfully").show();
+        TherapyProgrammeDto therapyProgrammeDto = new TherapyProgrammeDto(programmeId, programmeName, programmeDuration, price);
+        boolean isSaved = therapyProgrammeBo.save(therapyProgrammeDto);
+        if (isSaved) {
+            new Alert(Alert.AlertType.INFORMATION, "Therapy Programme Saved successfully").show();
             refreshPage();
             loadTable();
-        }
-        else {
-            new Alert(Alert.AlertType.ERROR,"Therapy Programme Not Saved Please try Again").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Therapy Programme Not Saved Please try Again").show();
         }
     }
 
     @FXML
     void btnUpdateCustomerOnAction(ActionEvent event) throws SQLException, IOException {
         String programmeId = txtProgrammeId.getText();
-        String programmeName = txtProgrammeName.getText();
+        String programmeName = cmbTherapyProgrammeName.getValue();
         String programmeDuration = txtDuration.getText();
         double price = Double.parseDouble(txtFees.getText());
 
-        TherapyProgrammeDto therapyProgrammeDto = new TherapyProgrammeDto(programmeId, programmeName,programmeDuration, price);
-        boolean isSaved = therapyProgrammeBo.update( therapyProgrammeDto);
-        if(isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"Therapy Programme update successfully").show();
+        TherapyProgrammeDto therapyProgrammeDto = new TherapyProgrammeDto(programmeId, programmeName, programmeDuration, price);
+        boolean isSaved = therapyProgrammeBo.update(therapyProgrammeDto);
+        if (isSaved) {
+            new Alert(Alert.AlertType.INFORMATION, "Therapy Programme update successfully").show();
             refreshPage();
-        }
-        else {
-            new Alert(Alert.AlertType.ERROR,"Therapy Programme Not update Please try Again").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Therapy Programme Not update Please try Again").show();
         }
     }
 
@@ -208,7 +216,7 @@ public class ProgrammeController implements Initializable {
         TherapistProgrammeTm therapistProgrammeTm = tblProgrmme.getSelectionModel().getSelectedItem();
         if (therapistProgrammeTm != null) {
             txtProgrammeId.setText(therapistProgrammeTm.getTherapyProgrammeId());
-            txtProgrammeName.setText(therapistProgrammeTm.getTherapyProgrammeName());
+            cmbTherapyProgrammeName.setValue(therapistProgrammeTm.getTherapyProgrammeName());
             txtDuration.setText(therapistProgrammeTm.getTherapyDuration());
             txtFees.setText(String.valueOf(therapistProgrammeTm.getTherapyPrice()));
 
@@ -217,6 +225,4 @@ public class ProgrammeController implements Initializable {
             btnUpdate.setDisable(false);
         }
     }
-
-
 }

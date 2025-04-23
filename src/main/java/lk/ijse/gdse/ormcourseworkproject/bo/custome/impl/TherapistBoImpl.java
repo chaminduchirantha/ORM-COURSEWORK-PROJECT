@@ -1,5 +1,6 @@
 package lk.ijse.gdse.ormcourseworkproject.bo.custome.impl;
 
+import lk.ijse.gdse.ormcourseworkproject.Dao.DaoFactory;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.TherapistDao;
 import lk.ijse.gdse.ormcourseworkproject.Dao.custome.impl.TherapistDaoImpl;
 import lk.ijse.gdse.ormcourseworkproject.Dto.TherapistDto;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class TherapistBoImpl implements TherapistBo {
 
-    TherapistDao therapistDao = new TherapistDaoImpl();
+    TherapistDao therapistDao = (TherapistDao) DaoFactory.getInstance().getDao(DaoFactory.daoType.THERAPIST);
 
     @Override
     public String getNextId() throws SQLException, IOException {

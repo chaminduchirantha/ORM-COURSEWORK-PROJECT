@@ -12,9 +12,10 @@ import java.util.Date;
 @ToString
 public class TherapySessionDto {
     private String therapySessionId;
+    private String sessionName;
     private Date date;
     private String time;
-    private String sessionName;
     private String patientId;
-    private String therapistId;
+    private String therapyProgrammeId;
+
 }
